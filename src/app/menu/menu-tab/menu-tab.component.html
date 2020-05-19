@@ -1,5 +1,7 @@
 
-<div class="menuTab">
+<div class="menuTab"  >
+   <!-- <span>{{menu.image}}</span> -->
    <button class="menuBtn" name={{menu.id}} id={{menu.id}}
-   [ngClass]=menu.menuName [(ngModel)]=menu.image (click)="changeBackgroundImage()">{{menu.menuName}}</button> 
+   [ngClass]=menu.menuName (click)="changeBackgroundImage($event)">{{menu.menuName}}</button> 
+   <!-- <input type="hidden" [(ngModel)]=menu.image id='hidden'{{menu.id}}/> -->
 </div>

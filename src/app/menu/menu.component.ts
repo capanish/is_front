@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 export class MenuComponent implements OnInit {
   @Input() menu: Menu;
 
+  newImgObj : string = 'assets/images/veggies.jpg';
   menuItems:Menu[];
   constructor(private http: HttpClient, private menuService: MenuService) { }
   ngOnInit() {
@@ -23,12 +24,11 @@ export class MenuComponent implements OnInit {
     this.menuItems = this.menuService.getMenuItems();
    // console.log(this.menuItems);
    }
-
-   changeBtnBGColor(){
-    //alert('changeBtnBGColor');
-
-
-   }
+   getNewImageObj(newImgObj){
+    console.log();
+    this.newImgObj=newImgObj;
+  }
+   changeBtnBGColor(){}
 
 
 

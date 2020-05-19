@@ -11,11 +11,11 @@ import { CoreEnvironment } from '@angular/core/src/render3/jit/compiler_facade_i
 export class MenuImageComponent implements OnInit {
   @Input() menu: Menu;
   @Input() imageName : string;
- // imageName =this.menu.image;
+
   //constructor(public environment: CoreEnvironment) { }
   constructor() { }
   ngOnInit() {
-   //environment.apiUrl;
+    //environment.apiUrl;
   }
   
 }
