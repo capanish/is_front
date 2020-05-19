@@ -21,7 +21,7 @@ export class MenuTabComponent implements OnInit,OnChanges {
    buttonId : number;
    updatedImage : string;
    changeBackgroundImage(event){
-     alert(this.menu.image);
+    // alert(this.menu.image);
    // console.log(" on change" +event);
     this.newImage.emit(this.menu.image);
     }
