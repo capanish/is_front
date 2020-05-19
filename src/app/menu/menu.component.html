@@ -1,12 +1,13 @@
-<!-- <app-menu-image [imageName]="newImgObj"> -->
-<app-menu-image></app-menu-image>
+<div style="position:inherit">
+   <app-menu-image></app-menu-image>
+</div>
+ 
 
 <div class="menuTabDiv">
 <div class = "menuFlex">
  <app-menu-tab style="width: 100%;" 
   *ngFor="let menuItem of menuItems"
    [menu]="menuItem" (newImage)="getNewImageObj($event)">
- 
-   </app-menu-tab>
+    </app-menu-tab>
 </div>
 </div>

@@ -22,11 +22,9 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     //this.changeBtnBGColor();
     this.menuItems = this.menuService.getMenuItems();
-   // console.log(this.menuItems);
    }
    getNewImageObj(newImgObj){
-    console.log();
-    this.newImgObj=newImgObj;
+      this.newImgObj=newImgObj;
   }
    changeBtnBGColor(){}
 

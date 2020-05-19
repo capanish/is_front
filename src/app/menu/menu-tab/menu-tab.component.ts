@@ -21,35 +21,23 @@ export class MenuTabComponent implements OnInit,OnChanges {
    buttonId : number;
    updatedImage : string;
    changeBackgroundImage(event){
-    // alert(this.menu.image);
-   // console.log(" on change" +event);
-    this.newImage.emit(this.menu.image);
+  
+   this.newImg=this.menu.image;
+   this.newImage.emit(this.menu.image);
+    this.menuService.menuSelected.emit(this.menu.image);
     }
-  constructor() { }
+  constructor(private menuService: MenuService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+       this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
+    }
 
   @Input() menu: Menu;
    
   ngOnChanges(){
       this.newImage.emit(this.menu.image);
   }
-  
-  changeBackgroundImage1(event){
+  showCatList(){
    
-     /*
-     var target = event.target || event.srcElement || event.currentTarget;
-     var idAttr = target.attributes.id;
-     var value = idAttr.nodeValue;
-     if(value==1){
-       document.getElementById(value).style.backgroundColor="green";
-     }*/
-     //alert('on click'+value);
-
-     
-   }
-
-   showCatList(){
-    //alert('on dbl click');
   }
 }

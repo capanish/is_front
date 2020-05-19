@@ -5,15 +5,14 @@ import { HttpClient} from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService implements OnInit {
-    //menuSelected = new EventEmitter<Menu>();
+    menuSelected = new EventEmitter<string>();
     //private menuItems: Menu[]=[];
-    private menuItems: any;
+    public menuItems: any;
     constructor(private http:HttpClient){
         
     }
      
     getMenuItems(){
-
      var menuLoop: Menu[] = [];
      this.http.get('http://localhost:8081/apiInteractiveRetailStore/v1/menus')
      .subscribe(menu => {

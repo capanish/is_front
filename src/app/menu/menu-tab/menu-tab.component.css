@@ -30,6 +30,38 @@
     background-color: Black;
 }
 
-.Veggies:Hover{
-    background-color: green;
-}
+.Recipe:hover {
+    outline: 0;
+    border-color: black;
+    box-shadow: 0 0 0 3px black;
+   background: ivory;
+   color: black;
+  }
+  .Deals:hover {
+    outline: 0;
+    border-color: rgb(240, 224, 85);;
+    box-shadow: 0 0 0 3px rgb(240, 224, 85);;
+   background: ivory;
+   color: rgb(240, 224, 85);;
+  }
+  .Fish:hover {
+    outline: 0;
+    border-color:  rgb(85, 183, 240);
+    box-shadow: 0 0 0 3px rgb(85, 183, 240);
+   background: ivory;
+   color: rgb(85, 183, 240);
+  }
+  .Meat:hover {
+    outline: 0;
+    border-color: rgb(236, 65, 65);
+    box-shadow: 0 0 0 3px rgb(236, 65, 65);
+   background: ivory;
+   color: rgb(236, 65, 65);
+  }
+  .Veggies:hover {
+    outline: 0;
+    border-color: rgb(98, 228, 98);
+    box-shadow: 0 0 0 3px rgb(98, 228, 98);
+   background: ivory;
+   color: rgb(98, 228, 98);
+  }
