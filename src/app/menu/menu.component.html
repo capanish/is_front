@@ -1,0 +1,13 @@
+<!-- <app-menu-image [imageName]="menu.img"> -->
+<app-menu-image [imageName]="menuItem">
+</app-menu-image>
+
+<div class="menuTabDiv">
+<div class = "menuFlex">
+ <app-menu-tab style="width: 100%;" 
+  *ngFor="let menuItem of menuItems"
+   [menu]="menuItem">
+ 
+   </app-menu-tab>
+</div>
+</div>

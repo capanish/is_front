@@ -1,0 +1,8 @@
+.menuTabDiv{
+    background-color: darkgray;
+     width: 100%;
+     border-radius: 5px;
+}
+.menuFlex{
+    display: flex;
+}

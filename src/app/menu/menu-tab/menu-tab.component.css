@@ -1,0 +1,35 @@
+.menuTab{
+    padding-top: 5%; 
+    padding-bottom: 5%;
+}
+.menuBtn{
+    width: 80%;
+    height: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 5px;
+    color: honeydew;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    font-weight: bold;
+    
+}
+.Veggies{
+    background-color: rgb(98, 228, 98);
+}
+.Meat{
+    background-color: rgb(236, 65, 65);
+}
+.Fish{
+    background-color: rgb(85, 183, 240);
+}
+.Deals{
+    background-color: rgb(240, 224, 85);
+}
+
+.Recipe{
+    background-color: Black;
+}
+
+.Veggies:Hover{
+    background-color: green;
+}
