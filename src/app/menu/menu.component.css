@@ -6,3 +6,9 @@
 .menuFlex{
     display: flex;
 }
+.menuBG{
+    position:inherit;
+}
+.menuTab{
+    width: 100%;
+}

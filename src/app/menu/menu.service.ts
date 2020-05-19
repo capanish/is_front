@@ -17,7 +17,6 @@ export class MenuService implements OnInit {
      this.http.get('http://localhost:8081/apiInteractiveRetailStore/v1/menus')
      .subscribe(menu => {
                this.menuItems=menu;
-               console.log(menu);
             for(let menuItem of this.menuItems){
                 menuLoop.push(new Menu(menuItem.id, menuItem.menuName,
                     menuItem.image,menuItem.Active,
@@ -25,7 +24,7 @@ export class MenuService implements OnInit {
                     
             }
          }
-            );
+       );
          this.menuItems = menuLoop;
       return this.menuItems;
  }
