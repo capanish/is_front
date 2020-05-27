@@ -1,5 +1,5 @@
-<div class="menuTab">
+<div class="menuTab" >
    <button class="menuBtn" name={{menu.id}} id={{menu.id}}
-   [ngClass]=menu.menuName (click)="changeBackgroundImage($event)">{{menu.menuName}}</button> 
-  
-</div>
+   [ngClass]=menu.menuName (focus)="changeBackgroundImage()"
+   (click)="showCategoryList($event)">{{menu.menuName}}</button> 
+ </div>

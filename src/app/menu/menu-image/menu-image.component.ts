@@ -3,6 +3,7 @@ import { Menu } from './../menu.model';
 import { environment } from '../../../environments/environment';
 import { CoreEnvironment } from '@angular/core/src/render3/jit/compiler_facade_interface';
 import { MenuService } from '../menu.service';
+import { CategoryService } from '../../category/category.service';
 @Component({
   selector: 'app-menu-image',
   templateUrl: './menu-image.component.html',
@@ -11,17 +12,22 @@ import { MenuService } from '../menu.service';
 export class MenuImageComponent implements OnInit {
   @Input() menu: Menu;
    imageName : string;
-
+   showImageFlag :boolean=true;
+  
   //constructor(public environment: CoreEnvironment) { }
-  constructor(private menuService : MenuService) { 
+  constructor(private menuService : MenuService,private categoryService : CategoryService) { 
 
   }
   ngOnInit() {
     //environment.apiUrl;
-    this.menuService.menuSelected.subscribe(res => {
-      this.imageName=res;
-     
-    })
+   this.menuService.menuSelected.subscribe(resImgN => {
+      this.imageName=resImgN;
+    });
+   
+    this.categoryService.showImageFlag.subscribe(resImgF =>{
+      this.showImageFlag= resImgF;
+   });
+  
   }
 
   

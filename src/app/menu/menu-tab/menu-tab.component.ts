@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter,NgModule } from '@angular/core';
 import { Menu } from './../menu.model'
-import {MenuService} from './../menu.service';
+import { MenuService } from './../menu.service';
+import { CategoryService } from '../../category/category.service';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -16,28 +17,34 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class MenuTabComponent implements OnInit,OnChanges {
-  @Output() newImage = new EventEmitter();
-   newImg='';
-   buttonId : number;
-   updatedImage : string;
-   changeBackgroundImage(event){
-  
-   this.newImg=this.menu.image;
-   this.newImage.emit(this.menu.image);
-    this.menuService.menuSelected.emit(this.menu.image);
-    }
-  constructor(private menuService: MenuService) { }
-
-  ngOnInit() {
-       this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
-    }
-
+  @Output() menuItem = new EventEmitter();
   @Input() menu: Menu;
    
-  ngOnChanges(){
-      this.newImage.emit(this.menu.image);
-  }
-  showCatList(){
+   categoryItemsList: any=[];
+  constructor(private menuService: MenuService, private categoryService : CategoryService) { }
+
+  ngOnInit() {
+      //Set background image for selected menu item
+       this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
+    }
    
+  ngOnChanges(){
+   
+     this.menuItem.emit(this.menu);
+  }
+  changeBackgroundImage(){
+      this.menuService.menuSelected.emit(this.menu.image);
+      this.categoryService.showListFlag.emit(false);
+      this.categoryService.showImageFlag.emit(true);
+      
+    }
+  showCategoryList(event){
+     //Set menu id for selected menu item
+    this.menuService.menuIdSelected.emit(event.target.id);
+    this.menuService.menuNameSelected.emit(this.menu.menuName)
+    this.categoryService.showListFlag.emit(true);
+    this.categoryItemsList=this.categoryService.getCategoryList(event.target.id)
+    this.menuService.selectedCategoryList.emit(this.categoryItemsList);
+  
   }
 }

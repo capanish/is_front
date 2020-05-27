@@ -1,0 +1,27 @@
+.catLstDiv{
+    position: relative;
+}
+.catLstImg{
+    border-radius: 8px;
+}
+
+.catLstImg:hover {
+    outline: 0;
+    border-color: rgba(88, 100, 214, 0.418);
+    box-shadow: 0 0 0 3px  rgba(88, 100, 214, 0.418);
+    background:  rgba(88, 100, 214, 0.418);
+    opacity: 0.5;
+}
+
+.catLstImgName{
+    display: none; 
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    z-index: 99999;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: medium;
+    color : black; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

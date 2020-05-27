@@ -1,13 +1,15 @@
 <div class="menuBG">
-   <app-menu-image></app-menu-image>
+   <app-menu-image ></app-menu-image>
 </div>
- 
+<div >
+   <app-category></app-category>
+</div> 
 
 <div class="menuTabDiv">
 <div class = "menuFlex">
  <app-menu-tab class="menuTab" 
   *ngFor="let menuItem of menuItems"
-   [menu]="menuItem" (newImage)="getNewImageObj($event)">
+   [menu]="menuItem" (menuItemSelected)="getMenuObj($event)">
     </app-menu-tab>
 </div>
 </div>

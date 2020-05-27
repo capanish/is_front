@@ -7,6 +7,8 @@ import { MenuComponent} from './menu/menu.component';
 import { MenuTabComponent } from './menu/menu-tab/menu-tab.component';
 import { MenuImageComponent } from './menu/menu-image/menu-image.component';
 import { FormsModule } from '@angular/forms';
+import { CategoryComponent } from './category/category.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 
 
 
@@ -15,7 +17,9 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     MenuComponent,
     MenuTabComponent,
-    MenuImageComponent
+    MenuImageComponent,
+    CategoryComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,

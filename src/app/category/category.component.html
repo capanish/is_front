@@ -1,0 +1,10 @@
+<div *ngIf="showImg === false " > 
+  <div class = "catName">{{menuName}}</div>
+  <div class="catDiv">
+  <app-category-list class="catList" 
+  *ngFor="let catItem of categoryList"
+  [cat]="catItem"></app-category-list>
+
+</div>
+</div>
+

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { MenuService } from './menu.service';
 import {Menu} from './menu.model';
 import { FormsModule } from '@angular/forms';
+import { Category } from '../category/category.model';
+import { CategoryService } from '../category/category.service';
 @NgModule({
   imports: [
        FormsModule      
@@ -16,17 +18,27 @@ import { FormsModule } from '@angular/forms';
 export class MenuComponent implements OnInit {
   @Input() menu: Menu;
 
-  newImgObj : string = 'assets/images/veggies.jpg';
+  bgImgObj : string = 'assets/images/veggies.jpg';
+  menuItem :Menu;
+  menuId : number =0;
+  menuName : string;
   menuItems:Menu[];
+ 
+  categoryLst :Category[];
   constructor(private http: HttpClient, private menuService: MenuService) { }
+ 
   ngOnInit() {
-    //this.changeBtnBGColor();
-    this.menuItems = this.menuService.getMenuItems();
-   }
-   getNewImageObj(newImgObj){
-      this.newImgObj=newImgObj;
+     this.menuItems = this.menuService.getMenuItems();
+     }
+   
+    getMenuObj(menuItem){
+     this.bgImgObj=menuItem.image;
+     this.menuId = menuItem.id;
+     this.menuName = menuItem.menuName;
+     
   }
-   changeBtnBGColor(){}
+    
+  
 
 
 
