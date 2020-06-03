@@ -12,10 +12,9 @@ export class CategoryComponent implements OnInit {
   
   menuId : number;
   menuName : string;
- // selectedCategoryList : any;
   categoryList:Category[];
-  showImg : boolean = true;
-  showList : boolean = false;
+  showMenuImg : boolean = true;
+ 
 
   constructor(private menuService : MenuService,private categoryService : CategoryService) { }
 
@@ -27,17 +26,14 @@ export class CategoryComponent implements OnInit {
         this.menuName=resName;
       });
       this.menuService.selectedCategoryList.subscribe(resLst =>{
+        console.log(resLst);
        this.categoryList=resLst;
      });
-     this.categoryService.showImageFlag.subscribe(resImg =>{
-        this.showImg= resImg;
-       // this.menuService.show=resImg;
+      this.categoryService.showScreenE.subscribe(resImg =>{
+        this.showMenuImg= resImg;
      });
-     this.categoryService.showListFlag.subscribe(resLstF =>{
-      this.showList= resLstF;
-   });
-
-      
+   
+   
    }
 
 }

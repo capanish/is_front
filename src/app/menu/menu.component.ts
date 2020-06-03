@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
  
   ngOnInit() {
      this.menuItems = this.menuService.getMenuItems();
-     }
+      }
    
     getMenuObj(menuItem){
      this.bgImgObj=menuItem.image;

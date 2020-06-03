@@ -1,5 +1,6 @@
 <div class="catLstDiv">
   <div id="img{{cat.id}}" class="catLstImgName">{{cat.subMenuName}}</div> 
   <img  src={{cat.image}} class="catLstImg" id={{cat.id}}
-   (mouseover)= "showName($event)" (mouseout)= "hideName($event)">
+   (mouseover)= "showName($event)" (mouseout)= "hideName($event)"
+    (click)="showNutritionalInfo($event)">
 </div>

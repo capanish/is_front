@@ -1,7 +1,7 @@
 import { Menu } from './menu.model';
 import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-
+import { NutriInfo} from '../nutri-info/nutriInfo.model';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService implements OnInit {
@@ -9,8 +9,9 @@ export class MenuService implements OnInit {
     menuIdSelected = new EventEmitter<number>();
     menuNameSelected = new EventEmitter<string>();
     selectedCategoryList = new EventEmitter();
-   
-    //private menuItems: Menu[]=[];
+    nutritionalInformationEM = new EventEmitter();
+    
+
     public menuItems: any;
     
    
@@ -30,17 +31,12 @@ export class MenuService implements OnInit {
          }
        );
          this.menuItems = menuLoop;
-      return this.menuItems;
+         return this.menuItems;
  }
     
     ngOnInit() {
      
      }
-    /*
-    private menuItems: Menu[]= [
-            new Menu(1, "Veggies", "assets/images/veggies.jpg",Active.Y,0),
-            new Menu(2, "Fish", "assets/images/veggies.jpg",Active.Y,0)
-      ];
-        */
+
     }
   

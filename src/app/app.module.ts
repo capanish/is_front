@@ -9,6 +9,8 @@ import { MenuImageComponent } from './menu/menu-image/menu-image.component';
 import { FormsModule } from '@angular/forms';
 import { CategoryComponent } from './category/category.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
+import { NutriInfoComponent } from './nutri-info/nutri-info.component';
+import { NutriInfoButtonsComponent } from './nutri-info/nutri-info-buttons/nutri-info-buttons.component';
 
 
 
@@ -19,7 +21,9 @@ import { CategoryListComponent } from './category/category-list/category-list.co
     MenuTabComponent,
     MenuImageComponent,
     CategoryComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    NutriInfoComponent,
+    NutriInfoButtonsComponent
   ],
   imports: [
     BrowserModule,

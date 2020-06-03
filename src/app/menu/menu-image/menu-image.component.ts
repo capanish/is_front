@@ -12,7 +12,7 @@ import { CategoryService } from '../../category/category.service';
 export class MenuImageComponent implements OnInit {
   @Input() menu: Menu;
    imageName : string;
-   showImageFlag :boolean=true;
+   showScreen :string ='menu';
   
   //constructor(public environment: CoreEnvironment) { }
   constructor(private menuService : MenuService,private categoryService : CategoryService) { 
@@ -24,10 +24,11 @@ export class MenuImageComponent implements OnInit {
       this.imageName=resImgN;
     });
    
-    this.categoryService.showImageFlag.subscribe(resImgF =>{
-      this.showImageFlag= resImgF;
+    this.categoryService.showScreenE.subscribe(resImgF =>{
+      this.showScreen= resImgF;
    });
-  
+     
+   
   }
 
   
