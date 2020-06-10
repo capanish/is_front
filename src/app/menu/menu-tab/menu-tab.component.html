@@ -1,5 +1,91 @@
+
 <div class="menuTab" >
-   <button class="menuBtn" name={{menu.id}} id={{menu.id}}
+   <button class="menuBtn" name={{menu.id}} id={{iVal}}
    [ngClass]=menu.menuName (focus)="changeBackgroundImage()"
    (click)="showCategoryList($event)">{{menu.menuName}}</button> 
  </div>
+ <div style="display: none">
+	<div id="current">0</div>
+</div>
+
+
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@3.0.0/dist/browser/signalr.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+
+  <!-- <script>
+    const data = { ready : false};
+
+    const apiBaseUrl = ''
+
+	var iMenuCount = 0;
+
+	$('div').each(function(index, value){
+		iMenuCount++;
+	});
+
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl(`${apiBaseUrl}/signalr`)
+      .withAutomaticReconnect()
+      .configureLogging(signalR.LogLevel.Information)
+      .build()
+
+    connection.on('newMessage', newMessage)
+
+
+    /*let counter = 0
+    function newMessage(message) {
+      message.id = counter++ // vue transitions need an id
+      data.messages.unshift(message)
+    }*/
+
+    connection.start()
+      .then(() => data.ready = true)
+      .catch(console.error)
+
+	 function newMessage(message) { 
+     //alert(JSON.stringify(message));
+		 iPosition = $('#current').html();
+		setPosition(message.text, iMenuCount, iPosition);
+	}
+
+	function setPosition(iGesture, iMenuCount, iPosition) {
+		var bLeft = false;
+		var bRight = false;
+		var iCurrent = parseInt(iPosition);
+		var bBack = false;
+		var bClick = false;
+		
+		if (iGesture == 'left') {
+			bLeft = true;
+		} else if (iGesture == 'right') {
+			bRight = true;
+		} else if (iGesture == "back") {
+			bBack = true;
+		} else if (iGesture == "click") {
+			bClick = true;
+		}
+		
+		if (bLeft == true && iPosition > 0) {
+			var iPos = iCurrent-1;
+			navigateMenu(iPos, iPosition);
+		} else if (bRight == true && iPosition < (iMenuCount-1)) {
+			var iPos = iCurrent+1;
+			navigateMenu(iPos, iPosition);
+		} else if (bBack == true) {
+			window.history.back();
+		} else if (bClick == true) {
+			var iPos = iCurrent;
+			var cHref = $('#nav'+ iPos).attr("href");
+			window.location.href = cHref;
+		}
+	}
+
+	function navigateMenu(iPosition, iCurrent) {
+		$('#nav' + iCurrent).removeClass("active");
+		$('#nav' + iPosition).addClass("active");
+		$('#img' + iCurrent).css("display", 'none');
+		$('#img' + iPosition).css("display", 'block');
+		$('#current').html(iPosition);
+	}
+  </script> -->

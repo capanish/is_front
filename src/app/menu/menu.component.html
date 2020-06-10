@@ -1,3 +1,7 @@
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
 <div class="menuBG">
    <app-menu-image ></app-menu-image>
 </div>
@@ -9,9 +13,11 @@
 </div>
 <div class="menuTabDiv">
 <div class = "menuFlex">
+ 
  <app-menu-tab class="menuTab" 
-  *ngFor="let menuItem of menuItems"
-   [menu]="menuItem" (menuItemSelected)="getMenuObj($event)">
-    </app-menu-tab>
+  *ngFor="let menuItem of menuItems;let i=index;" 
+   [menu]="menuItem" (menuItemSelected)="getMenuObj($event)" [iVal]="i">
+  </app-menu-tab>
 </div>
 </div>
+

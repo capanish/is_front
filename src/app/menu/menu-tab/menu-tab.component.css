@@ -66,3 +66,7 @@
    background: ivory;
    color: rgb(98, 228, 98);
   }
+  .Veggies button.active {
+    background-color: #4CAF50;
+    color: white;
+  }

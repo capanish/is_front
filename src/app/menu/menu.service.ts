@@ -13,8 +13,8 @@ export class MenuService implements OnInit {
     
 
     public menuItems: any;
-    
-   
+    public menuCount:number =0;
+    menuCountE = new EventEmitter();
 
     constructor(private http:HttpClient){}
 
@@ -23,13 +23,18 @@ export class MenuService implements OnInit {
      this.http.get('http://localhost:8081/apiInteractiveRetailStore/v1/menus')
      .subscribe(menu => {
                this.menuItems=menu;
+              
              for(let menuItem of this.menuItems){
                 menuLoop.push(new Menu(menuItem.id, menuItem.menuName,
                     menuItem.image,menuItem.Active,
                     menuItem.notification));
+                    this.menuCount++;
             }
+            this.menuCountE.emit(this.menuCount);
          }
        );
+       
+
          this.menuItems = menuLoop;
          return this.menuItems;
  }
@@ -37,6 +42,8 @@ export class MenuService implements OnInit {
     ngOnInit() {
      
      }
+
+    
 
     }
   
