@@ -1,14 +1,21 @@
 .menuTabDiv{
-    background-color: darkgray;
-     width: 100%;
-     border-radius: 5px;
-}
+    
+    padding-top: 43%;
+
+    background-size: cover; 
+   
+    width: 100%;
+    background-image:linear-gradient(to bottom #e8eee8 0%);
+    }
 .menuFlex{
     display: flex;
+    padding-left: 5%;
+  
 }
 .menuBG{
     position:inherit;
 }
 .menuTab{
     width: 100%;
-}
+    bottom: 0;
+   }

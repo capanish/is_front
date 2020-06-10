@@ -1,23 +1,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-
-<div class="menuBG">
-   <app-menu-image ></app-menu-image>
-</div>
 <div >
    <app-category></app-category>
 </div> 
 <div> 
    <app-nutri-info ></app-nutri-info>
 </div>
-<div class="menuTabDiv">
-<div class = "menuFlex">
- 
+   <div class="menuTabDiv" [style.background-image]="'url('+imageName+')'">
+    
+      <!-- <img  src="{{imageName}}" style="height: 10%;"> -->
+   <!-- <div class="menuTabDiv" style=" background-image: url(assets/images/mylist.jpeg)"> -->
+   <!-- <div class="menuTabDiv" [ngStyle]="{'background-image': 'url(' + imageName + ')'}" >  -->
+ <div class = "menuFlex" >
  <app-menu-tab class="menuTab" 
   *ngFor="let menuItem of menuItems;let i=index;" 
    [menu]="menuItem" (menuItemSelected)="getMenuObj($event)" [iVal]="i">
   </app-menu-tab>
 </div>
-</div>
+ </div>
 

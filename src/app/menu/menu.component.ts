@@ -30,12 +30,13 @@ var iMenuCount:number  = 0;
 export class MenuComponent implements OnInit {
   //------Menu Content-----
   @Input() menu: Menu;
-  bgImgObj : string = 'assets/images/veggies.jpg';
+  bgImgObj : string = 'assets/images/recipes_new.jpeg';
   menuItem :Menu;
   menuId : number =0;
   menuName : string;
   menuItems:Menu[];
   categoryLst :Category[];
+  imageName : string;
   
   //------SingnalR------
   iPosition : any;
@@ -54,6 +55,11 @@ export class MenuComponent implements OnInit {
     iMenuCount=resCount;
    });
 
+   this.menuService.menuSelected.subscribe(resImgN => {
+    this.imageName=resImgN;
+  });
+ 
+ 
   const connection = new signalR.HubConnectionBuilder()
   .withUrl(apiBaseUrl+'/signalr')
   .withAutomaticReconnect()
@@ -71,15 +77,15 @@ constructor(private http: HttpClient, private menuService: MenuService) { }
  // private hubConnection: signalR.HubConnection;
 
  newMessage = (message) => {
-  //this.mymethod();
+ 
   this.iPosition=document.getElementById('current').innerHTML;
-  // alert('iMenuCount '+iMenuCount);
- // iPosition = $('#current').html();
+  console.log(this.iPosition);
+  
  this.setPosition(message.text, iMenuCount, this.iPosition);
 
 }
 
-//setPosition(iGesture, iMenuCount, iPosition) {
+
   setPosition =(iGesture, iMenuCount, iPosition) =>{
     console.log('m in setPosition iGesture : '+iGesture
     +' iMenuCount : '+iMenuCount+' iPosition : '+iPosition);
@@ -89,7 +95,7 @@ constructor(private http: HttpClient, private menuService: MenuService) { }
 		var iCurrent = parseInt(iPosition);
 		var bBack = false;
 		var bClick = false;
-		console.log('iCurrent : '+iCurrent);
+	
 		if (iGesture == 'left') {
 			bLeft = true;
 		} else if (iGesture == 'right') {
@@ -101,15 +107,11 @@ constructor(private http: HttpClient, private menuService: MenuService) { }
 		}
 		
 		if (bLeft == true && iPosition > 0) {
-      console.log('m in bLeft ');
-			var iPos = iCurrent-1;
+     	var iPos = iCurrent-1;
 			this.menuTabComponent.navigateMenu(iPos, iPosition);
 		} else if (bRight == true && iPosition < (iMenuCount-1)) {
-      console.log('m in bRight ');
-      var iPos = iCurrent+1;
-      console.log('iPos : '+iPos);
-      console.log('iPosition : '+iPosition);
-			this.menuTabComponent.navigateMenu(iPos, iPosition);
+        var iPos = iCurrent+1;
+      	this.menuTabComponent.navigateMenu(iPos, iPosition);
 		} else if (bBack == true) {
 			window.history.back();
 		} else if (bClick == true) {

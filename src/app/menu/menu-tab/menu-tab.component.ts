@@ -31,13 +31,22 @@ export class MenuTabComponent implements OnInit,OnChanges {
   ngOnInit() {
       //Set background image for selected menu item
        this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
+      
+      }
+
+      ngAfterViewInit(){
+        var elementC = document.getElementById('0');
+        elementC.classList.add("active");
+        elementC.classList.add("selected");
+
       }
    
   ngOnChanges(){
         this.menuItem.emit(this.menu);
   }
-  changeBackgroundImage(){
-      this.menuService.menuSelected.emit(this.menu.image);
+  changeBackgroundImage(iVal){
+      //this.menuService.menuSelected.emit(this.menu.image);
+      this.menuService.menuSelected.emit(this.menuService.menuItems[iVal].image);
       this.categoryService.showScreenE.emit('menu');
       
     }
@@ -49,24 +58,15 @@ export class MenuTabComponent implements OnInit,OnChanges {
     this.menuService.selectedCategoryList.emit(this.categoryItemsList);
  }
  navigateMenu = (iPosition, iCurrent) => {
-  console.log(' navigate menu : '+ ' iPosition ' +iPosition+
-  ' iCurrent : '+iCurrent  );
-  
- // var elementC = document.getElementById(iCurrent);
- var elementC = document.getElementById(iCurrent);
+  var elementC = document.getElementById(iCurrent);
+  var elementP =document.getElementById(iPosition);
+  elementC.classList.remove("active");
+  elementC.classList.remove("selected");
+  elementP.classList.add("active");
+  elementP.classList.add("selected");
+  this.changeBackgroundImage(iPosition);
+  document.getElementById('current').innerHTML=iPosition;
 
-  console.log(elementC);
- // elementC.classList.remove("hover");
-  var elementP = document.getElementById(iPosition);
- // elementP.classList.add("hover");
-  //document.getElementById('current').innerHTML(iPosition);
-  /*
-  $('#nav' + iCurrent).removeClass("active");
-  $('#nav' + iPosition).addClass("active");
-  $('#img' + iCurrent).css("display", 'none');
-  $('#img' + iPosition).css("display", 'block');
-  $('#current').html(iPosition);
-  */
 }
  
 
