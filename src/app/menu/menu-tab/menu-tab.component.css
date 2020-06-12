@@ -13,12 +13,12 @@
     border-style: solid;
     outline: 0;
     color: honeydew;
-    font-weight: bold;
     border-color: honeydew;
     box-shadow: honeydew;
     font-family: 'Arial Narrow';
     font-weight: lighter;
     letter-spacing: 0;
+    /* word-wrap: break-word; */
      
 }
 .Veggies{

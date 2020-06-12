@@ -12,6 +12,7 @@ import { CategoryService } from '../category.service';
 })
 export class CategoryListComponent implements OnInit {
  
+  @Input() iVal : any;
   @Input() cat : Category;
    selectedCatlist : any;
    nutrionalInformation : NutriInfo;
@@ -23,21 +24,49 @@ export class CategoryListComponent implements OnInit {
   ngOnInit() {
     
    }
+   ngAfterViewInit(){
+    var elementC = document.getElementById('0');
+    elementC.classList.add("active");
+    this.showName(0);
+   // elementC.classList.add("selected");
 
-   showName(event){
-     var eleId='img'+event.target.id;
+  }
+   showName(iVal){
+     console.log('showName : '+iVal);
+     //var eleId='img'+event.target.id;
+     
+     var eleId=document.getElementById(iVal).getAttribute('name');
+     eleId='img'+eleId;
      document.getElementById(eleId).style.display="block";
+     
    }
     
-   hideName(event){
-    var eleId='img'+event.target.id;
-    document.getElementById(eleId).style.display="none";
-  }
+   hideName(iVal){
+    console.log('hideName : '+iVal);
+    //var eleId='img'+event.target.id;
+      var eleId=document.getElementById(iVal).getAttribute('name');
+      eleId='img'+eleId;
+      document.getElementById(eleId).style.display="none";
+    }
 
-  showNutritionalInfo(event){
+  showNutritionalInfo(iVal){
     this.categoryService.showScreenE.emit('none');
-    this.nutrionalInformation=this.nutriInfoService.getNutritionalInfo(event.target.id);
+    var eleId=document.getElementById(iVal).getAttribute('name');
+    this.nutrionalInformation=this.nutriInfoService.getNutritionalInfo(eleId);
     this.categoryService.nutritionalInformationE.emit(this.nutrionalInformation);
     //this.menuService.nutritionalInformationEM.emit(this.nutrionalInformation);
   }
+
+  navigateMenu = (iPosition, iCurrent) => {
+    var elementC = document.getElementById(iCurrent);
+    var elementP =document.getElementById(iPosition);
+    elementC.classList.remove("active");
+    this.hideName(iCurrent);
+    elementP.classList.add("active");
+    this.showName(iPosition);
+    document.getElementById('current').innerHTML=iPosition;
+  
+  }
+
+   
   }

@@ -11,5 +11,18 @@ export class NutriInfoButtonsComponent implements OnInit {
 
   ngOnInit() {
   }
+  ngAfterViewInit(){
+    var elementC = document.getElementById('0');
+    elementC.classList.add("active");
+    
 
+  }
+  navigateMenu = (iPosition, iCurrent) => {
+    var elementC = document.getElementById(iCurrent);
+    var elementP =document.getElementById(iPosition);
+    elementC.classList.remove("active");
+    elementP.classList.add("active");
+    document.getElementById('current').innerHTML=iPosition;
+  
+  }
 }

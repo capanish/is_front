@@ -23,8 +23,6 @@ export class MenuTabComponent implements OnInit,OnChanges {
   @Input() iVal : any;
   categoryItemsList: any=[];
   
- 
-
   constructor(private menuService: MenuService, private categoryService : CategoryService,
     private nutriInfoService : NutriInfoService) { }
 
@@ -49,14 +47,27 @@ export class MenuTabComponent implements OnInit,OnChanges {
       this.menuService.menuSelected.emit(this.menuService.menuItems[iVal].image);
       this.categoryService.showScreenE.emit('menu');
       
-    }
+    }/*
   showCategoryList(event){
     //Set menu id for selected menu item
+    var element=document.getElementById(iCurrent);
     this.menuService.menuIdSelected.emit(event.target.id);
     this.menuService.menuNameSelected.emit(this.menu.menuName)
     this.categoryItemsList=this.categoryService.getCategoryList(event.target.id);
     this.menuService.selectedCategoryList.emit(this.categoryItemsList);
- }
+ }*/
+
+ showCategoryList=(iVal) =>{
+  //Set menu id for selected menu item
+  var elementId=document.getElementById(iVal).getAttribute('name');
+  this.menuService.menuIdSelected.emit(parseInt(elementId));
+  this.menuService.menuNameSelected.emit(this.menuService.menuItems[iVal].menuName);
+  this.menuService.menuImageSelected.emit(this.menuService.menuItems[iVal].image);
+  this.categoryItemsList=this.categoryService.getCategoryList(parseInt(elementId));
+  this.menuService.selectedCategoryList.emit(this.categoryItemsList);
+}
+
+
  navigateMenu = (iPosition, iCurrent) => {
   var elementC = document.getElementById(iCurrent);
   var elementP =document.getElementById(iPosition);

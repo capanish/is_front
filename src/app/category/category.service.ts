@@ -11,10 +11,10 @@ export class CategoryService implements OnInit {
     catLstLenFlag : string ='menu';
     showScreenE = new EventEmitter<string>();
     nutritionalInformationE = new EventEmitter();
-   
-    constructor(private http:HttpClient){
-        
-    }
+    catCountE = new EventEmitter();
+    public catCount:number =0;
+
+    constructor(private http:HttpClient){  }
      
     getCategoryList(menuId){
      var categoryLoop: Category[] = [];
@@ -27,8 +27,9 @@ export class CategoryService implements OnInit {
                         new Menu(res1.menuId.id, res1.menuId.menuName, res1.menuId.image,
                           res1.menuId.Active, res1.menuId.notification),
                           res1.image, res1.Active, res1.notification));
+                          this.catCount++;
                 }
-            
+                this.catCountE.emit(this.catCount);
                if(categoryLoop.length>0){
                  this.catLstLenFlag ='categoryList';
               }

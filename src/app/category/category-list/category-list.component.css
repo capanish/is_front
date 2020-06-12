@@ -1,17 +1,48 @@
 .catLstDiv{
     position: relative;
+    /* border-radius: 5px; */
+    
 }
 .catLstImg{
     border-radius: 8px;
+    border-style: solid;
+    outline: 0;
+    color: honeydew;
+    border-color: honeydew;
+    box-shadow: honeydew;
 }
 
-.catLstImg:hover {
+.catLstImg.active {
     outline: 0;
     border-color: rgba(88, 100, 214, 0.418);
     box-shadow: 0 0 0 3px  rgba(88, 100, 214, 0.418);
     background:  rgba(88, 100, 214, 0.418);
     opacity: 0.5;
+    padding: 5%;
+    vertical-align: middle;
+    line-height: 10%;
+    border-radius: 8px;
+    border-style: solid;
+    color: honeydew;
+    border-color: honeydew;
+    box-shadow: honeydew;
 }
+
+/* .catLstImg:hover {
+    outline: 0;
+    border-color: rgba(88, 100, 214, 0.418);
+    box-shadow: 0 0 0 3px  rgba(88, 100, 214, 0.418);
+    background:  rgba(88, 100, 214, 0.418);
+    opacity: 0.5;
+    padding: 10%;
+    vertical-align: middle;
+    line-height: 10%;
+    border-radius: 8px;
+    border-style: solid;
+    color: honeydew;
+    border-color: honeydew;
+    box-shadow: honeydew;
+} */
 
 .catLstImgName{
     display: none; 
@@ -24,4 +55,17 @@
     font-size: medium;
     color : black; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.selected{
+    padding: 55%;
+    vertical-align: middle;
+    line-height: 10%;
+    font-size: large;
+}
+.active {
+    outline: 0;
+    border-color: rgba(88, 100, 214, 0.418);
+    box-shadow: 0 0 0 3px  rgba(88, 100, 214, 0.418);
+    background:  rgba(88, 100, 214, 0.418);
+    opacity: 0.5;
 }

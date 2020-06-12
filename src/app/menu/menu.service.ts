@@ -8,6 +8,7 @@ export class MenuService implements OnInit {
     menuSelected = new EventEmitter<string>();
     menuIdSelected = new EventEmitter<number>();
     menuNameSelected = new EventEmitter<string>();
+    menuImageSelected = new EventEmitter<string>();
     selectedCategoryList = new EventEmitter();
     nutritionalInformationEM = new EventEmitter();
     

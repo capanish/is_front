@@ -12,7 +12,7 @@ export class NutriInfoService implements OnInit {
     subMenuId : number;
     public nutriInfo: NutriInfo;
     nutritionalInfoE = new EventEmitter();
-   
+    showScreenE =  new EventEmitter();
     constructor(private http:HttpClient , private categoryService : CategoryService,
         private menuService : MenuService){
         
@@ -26,7 +26,8 @@ export class NutriInfoService implements OnInit {
                   console.log(nutriInfR) ;
                   this.nutritionalInfoE.emit(this.nutriInfo);  
                   console.log(this.nutriInfo);
-                         this.categoryService.showScreenE.emit('nutriInfo'); 
+                  this.showScreenE.emit('nutriInfo');
+                   this.categoryService.showScreenE.emit('nutriInfo'); 
                  /* this.nutriInfo= new NutriInfo(nutriInfR.id,
                     new Category(nutriInfR.subMenuID.id, nutriInfR.subMenuID.subMenuName,
                         new Menu(nutriInfR.subMenuID.menuId.id, nutriInfR.subMenuID.menuId.menuName,
@@ -49,18 +50,4 @@ export class NutriInfoService implements OnInit {
     ngOnInit() {
        
     }
-          /*
-               for(let nutriInfR of this.nutriInfo){
-                   new NutriInfo(nutriInfR.id,
-                    new Category(nutriInfR.subMenuID.id, nutriInfR.subMenuID.subMenuName,
-                        new Menu(nutriInfR.subMenuID.menuId.id, nutriInfR.subMenuID.menuId.menuName,
-                             nutriInfR.subMenuID.menuId.image,
-                            nutriInfR.subMenuID.menuId.active, nutriInfR.subMenuID.menuId.notification),
-                            nutriInfR.subMenuID.image, nutriInfR.subMenuID.active, nutriInfR.subMenuID.notification),
-                          nutriInfR.procureDate,nutriInfR.sugar,
-                          nutriInfR.water,nutriInfR.sodium, nutriInfR.calcium,nutriInfR.iron, 
-                          nutriInfR.itemDescription, nutriInfR.location,nutriInfR.image,nutriInfR.active);
-               
-            }*/   
-   }
-  
+}  

@@ -7,15 +7,14 @@ import { Category } from '../category/category.model';
 import { MenuTabComponent } from '../menu/menu-tab/menu-tab.component';
 //import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
+import { CategoryService } from '../category/category.service';
 
-
- //-------Signal R-------
+ //-------SignalR-Starts------
  const data = { ready : false};
  const apiBaseUrl = 'http://localhost:8081/apiInteractiveRetailStore/v1';
-// function mymethod(){
-//    alert ('m in');
-//  }
-var iMenuCount:number  = 0;
+ var iMenuCount:number  = 0;
+ //-------SignalR-Ends-------
+
 @NgModule({
   imports: [
        FormsModule
@@ -37,16 +36,19 @@ export class MenuComponent implements OnInit {
   menuItems:Menu[];
   categoryLst :Category[];
   imageName : string;
+  showScreen :string ='menu';
   
-  //------SingnalR------
+  //------SingnalR- variable declaration -Starts-----
   iPosition : any;
   @ViewChild  (MenuTabComponent) menuTabComponent: MenuTabComponent;
+//------SingnalR- variable declaration -Ends------
+ 
+constructor(private http: HttpClient, private menuService: MenuService, private categoryService : CategoryService) { }
 
-  getMenuObj(menuItem){
+ getMenuObj(menuItem){
     this.bgImgObj=menuItem.image;
     this.menuId = menuItem.id;
     this.menuName = menuItem.menuName;
-
  }
 
  ngOnInit() {
@@ -54,12 +56,10 @@ export class MenuComponent implements OnInit {
   this.menuService.menuCountE.subscribe(resCount =>{
     iMenuCount=resCount;
    });
-
-   this.menuService.menuSelected.subscribe(resImgN => {
-    this.imageName=resImgN;
-  });
- 
- 
+   this.categoryService.showScreenE.subscribe(resImgF =>{
+    this.showScreen= resImgF;
+   });
+ //--------------SignalR Connection -Starts---------------
   const connection = new signalR.HubConnectionBuilder()
   .withUrl(apiBaseUrl+'/signalr')
   .withAutomaticReconnect()
@@ -70,26 +70,25 @@ export class MenuComponent implements OnInit {
  connection.start()
    .then(() => data.ready = true)
    .catch(console.error)
+   //--------------SignalR Connection -Ends---------------
 }
-constructor(private http: HttpClient, private menuService: MenuService) { }
 
-  //-------Signal R-----
- // private hubConnection: signalR.HubConnection;
+ngAfterViewInit(){
+  this.menuService.menuSelected.subscribe(resImgN => {
+    this.imageName=resImgN;
+  });
+}
 
+  //------------SignalR Methods -Start------------
  newMessage = (message) => {
- 
-  this.iPosition=document.getElementById('current').innerHTML;
-  console.log(this.iPosition);
-  
- this.setPosition(message.text, iMenuCount, this.iPosition);
-
-}
-
-
-  setPosition =(iGesture, iMenuCount, iPosition) =>{
-    console.log('m in setPosition iGesture : '+iGesture
-    +' iMenuCount : '+iMenuCount+' iPosition : '+iPosition);
-
+   console.log('current screen is : '+this.showScreen);
+  if(this.showScreen ==='menu'){ 
+    console.log('inside newMessage menu');
+    this.iPosition=document.getElementById('current').innerHTML;
+    this.setPosition(message.text, iMenuCount, this.iPosition);
+  }
+ }
+ setPosition =(iGesture, iMenuCount, iPosition) =>{
     var bLeft = false;
 		var bRight = false;
 		var iCurrent = parseInt(iPosition);
@@ -115,11 +114,10 @@ constructor(private http: HttpClient, private menuService: MenuService) { }
 		} else if (bBack == true) {
 			window.history.back();
 		} else if (bClick == true) {
-			var iPos = iCurrent;
-			//var cHref = $('#nav'+ iPos).attr("href");
-			//window.location.href = cHref;
+      var iPos = iCurrent;
+      this.menuTabComponent.showCategoryList(iPos);
 		}
   }
- 
+  //-----------SignalR Methods -End-----------
 
    }

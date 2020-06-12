@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { CoreEnvironment } from '@angular/core/src/render3/jit/compiler_facade_interface';
 import { MenuService } from '../menu.service';
 import { CategoryService } from '../../category/category.service';
+
 @Component({
   selector: 'app-menu-image',
   templateUrl: './menu-image.component.html',
