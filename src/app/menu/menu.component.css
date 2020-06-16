@@ -1,11 +1,9 @@
 .menuTabDiv{
-    
-    padding-top: 43%;
-
-    background-size: cover; 
-   
-    width: 100%;
     background-image:linear-gradient(to bottom #e8eee8 0%);
+    padding-top: 41%;
+    background-size: cover;
+    width: 100%;
+    vertical-align: middle;
     }
 .menuFlex{
     display: flex;

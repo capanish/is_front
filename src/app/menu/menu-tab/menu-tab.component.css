@@ -1,7 +1,7 @@
 .menuTab{
     padding-top: 5%; 
     padding-bottom: 5%;
-    padding-left: 7%;
+    padding-left: 6%;
    
 }
 .menuBtn{
@@ -54,6 +54,14 @@
     line-height: 10%;
     font-size: large;
 }
+.MyList.active{
+  outline: 0;
+  border-color: hsl(0, 95%, 17%);
+  box-shadow: 0 0 0 3px hsl(0, 95%, 17%) ;
+  background: ivory;
+  color: hsl(0, 95%, 17%) ;
+}
+
 .Veggies.active{
     outline: 0;
     border-color: rgb(5, 87, 5) ;

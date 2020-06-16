@@ -32,21 +32,20 @@ export class CategoryListComponent implements OnInit {
 
   }
    showName(iVal){
-     console.log('showName : '+iVal);
-     //var eleId='img'+event.target.id;
-     
      var eleId=document.getElementById(iVal).getAttribute('name');
+     var eleBGId='bg'+eleId;
      eleId='img'+eleId;
      document.getElementById(eleId).style.display="block";
-     
+     document.getElementById(eleBGId).style.display="block";
    }
     
    hideName(iVal){
     console.log('hideName : '+iVal);
-    //var eleId='img'+event.target.id;
       var eleId=document.getElementById(iVal).getAttribute('name');
+      var eleBGId='bg'+eleId;
       eleId='img'+eleId;
       document.getElementById(eleId).style.display="none";
+      document.getElementById(eleBGId).style.display="none";
     }
 
   showNutritionalInfo(iVal){

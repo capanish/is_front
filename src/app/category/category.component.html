@@ -10,8 +10,7 @@ class="catBGImg">
 </div>
 <div class = "catName">{{menuName}}</div>
 <div class="catDiv" >
- 
-  <app-category-list class="catList"  *ngFor="let catItem of categoryList;let i=index;"
+   <app-category-list class="catList"  *ngFor="let catItem of categoryList;let i=index;"
   [cat]="catItem"  [iVal]="i"></app-category-list>
 
 </div>

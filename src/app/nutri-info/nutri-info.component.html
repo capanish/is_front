@@ -1,4 +1,4 @@
- <div *ngIf="showScreen === 'nutriInfo' " >
+ <div *ngIf="showScreen === 'nutriInfo' " > 
   <!-- [style.backgroundImage]="'url('+ nutritionalInformation.image + ')'"> -->
  <!-- background-image: url('assets/images/nutriInfo_banana.jpg'); -->
 <!-- {{nutritionalInformation.id}} 
@@ -7,10 +7,13 @@
    <!-- <img  src="assets/images/nutriInfo_banana.jpg" 
    style="height: -webkit-fill-available; width:-webkit-fill-available;">  -->
   <!-- <div></div> -->
-  <div ><img  src="{{nutritionalInformation.image}}" 
+  <div   [style.background-image]="'url('+nutritionalInformation.image+')'" class="nutriBGImg">
+     <!--<img  src="{{nutritionalInformation.image}}" 
     style="height: 90%; width:-webkit-fill-available;
-    z-index: -1; position: relative;"></div>
+    z-index: -1; position: relative;">-->
+   
+  </div> 
  
-  <app-nutri-info-buttons ></app-nutri-info-buttons>
+<app-nutri-info-buttons ></app-nutri-info-buttons> 
 
-</div>
+</div> 
