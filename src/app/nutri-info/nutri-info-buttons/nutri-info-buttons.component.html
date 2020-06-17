@@ -1,36 +1,40 @@
-<div class="buttonDiv" >
+<div class="buttonLstDiv" >
  
-  <button class="semi-transparent-button" id='0' 
-  style="background-image: url('assets/images/TV_on.png');
-  background-repeat: no-repeat;position: relative;
-  background-position-y: center; background-position-x: center;">
-    <label class="lbl">Video</label>
+  <div class="buttonDiv">
+  <button class ="semi-transparent-button"  id="0"
+  [style.background-image]="'url('+btnImage[0]+')'">
   </button>
- 
-  <button class ="semi-transparent-button" id='1' 
-  style="position: relative; vertical-align: top; font-weight: bolder;color: honeydew;"
+  <label class="lbl" id="lbl0" >Video</label>
+</div>
+<div  class="buttonDiv">
+  <button class ="semi-transparent-button btnText" id="1"
   value="14.99€"> 14.99€
-      <label class="lbl">€/kg</label>
+  </button> 
+  <label class="lbl" id="lbl1">€/kg</label>
+</div>
+
+<div class="buttonDiv">  
+  <button class ="semi-transparent-button"  id="2"
+  [style.background-image]="'url('+btnImage[2]+')'">
   </button>
-  <button class ="semi-transparent-button"  id='2' 
-  style="background-image: url('assets/images/Add_off.png');
-  background-repeat: no-repeat;position: relative;
-  background-position-y: center; background-position-x: center;">
-   <label class="lbl">Add</label>
+  <label class="lbl" id="lbl2">Add</label>
+</div>
+
+<div  class="buttonDiv">
+  <button class ="semi-transparent-button"  id="3"
+  [style.background-image]="'url('+btnImage[3]+')'">
   </button>
-  <button class ="semi-transparent-button"  id='3' 
-  style="background-image: url('assets/images/Recipe_off.png');
-  background-repeat: no-repeat;position: relative;
-  background-position-y: center; background-position-x: center;">
-   <label class="lbl">Recipe</label>
+  <label class="lbl" id="lbl3">Recipe</label>
+</div>
+
+<div  class="buttonDiv">
+  <button class ="semi-transparent-button"  id="4"
+  [style.background-image]="'url('+btnImage[4]+')'">
   </button>
-  <button class ="semi-transparent-button"  id='4' 
-  style="background-image: url('assets/images/Send_off.png');
-  background-repeat: no-repeat;position: relative;
-  background-position-y: center; background-position-x: center;">
-   <label class="lbl">Send</label>
-  </button>
- 
+  <label class="lbl" id="lbl4">Send</label>
+</div>
+
+
 </div>
 <div style="display: none">
 	<div id="current">0</div>
