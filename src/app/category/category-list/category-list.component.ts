@@ -11,7 +11,7 @@ import { CategoryService } from '../category.service';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
- 
+
   @Input() iVal : any;
   @Input() cat : Category;
    selectedCatlist : any;
@@ -22,7 +22,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
    }
    ngAfterViewInit(){
     var elementC = document.getElementById('0');
@@ -38,9 +38,8 @@ export class CategoryListComponent implements OnInit {
      document.getElementById(eleId).style.display="block";
      document.getElementById(eleBGId).style.display="block";
    }
-    
+
    hideName(iVal){
-    console.log('hideName : '+iVal);
       var eleId=document.getElementById(iVal).getAttribute('name');
       var eleBGId='bg'+eleId;
       eleId='img'+eleId;
@@ -64,8 +63,8 @@ export class CategoryListComponent implements OnInit {
     elementP.classList.add("active");
     this.showName(iPosition);
     document.getElementById('current').innerHTML=iPosition;
-  
+
   }
 
-   
+
   }

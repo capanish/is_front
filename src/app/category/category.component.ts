@@ -1,4 +1,5 @@
 import { Component, OnInit, Input,ViewChild} from '@angular/core';
+import { Location } from '@angular/common';
 import { MenuService } from '../menu/menu.service';
 import { Category } from './category.model';
 import { CategoryService } from './category.service';
@@ -19,26 +20,28 @@ import * as signalR from '@microsoft/signalr';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-  
+
   menuId : number;
   menuName : string;
   menuImage : string;
   categoryList:Category[];
-  showMenuImg : boolean = true;
+  showMenuImg : any = 'true';
   showScreen :string;
 
    //------SingnalR- variable declaration -Starts-----
    iPosition : any;
    @ViewChild  (CategoryListComponent) categoryListComponent: CategoryListComponent;
+
     iMenuCount:number  = 0;
     iColCount : number = 0;
     iRowCount : number= 0;
  //------SingnalR- variable declaration -Ends------
 
-  constructor(private menuService : MenuService,private categoryService : CategoryService) { }
+  constructor(private menuService : MenuService,private categoryService : CategoryService,
+     private location: Location) { }
 
-  ngOnInit() { 
-    this.menuService.menuIdSelected.subscribe(resId => {
+  ngOnInit() {
+     this.menuService.menuIdSelected.subscribe(resId => {
       this.menuId=resId;
     });
     this.menuService.menuNameSelected.subscribe(resName => {
@@ -57,18 +60,9 @@ export class CategoryComponent implements OnInit {
    this.categoryService.catCountE.subscribe(resCount =>{
     this. iMenuCount=resCount;
    });
-  
-   /*
-   this.categoryService.showScreenE.subscribe(resImgF =>{
-    this.showScreen= resImgF;
- });
-*/
 
    //--------------SignalR Connection -Starts---------------
- 
-  //  this.menuService.menuCountE.subscribe(resCount =>{
-  //   this. iMenuCount=resCount;
-  //  });
+
   const connection = new signalR.HubConnectionBuilder()
   .withUrl(apiBaseUrl+'/signalr')
   .withAutomaticReconnect()
@@ -79,39 +73,35 @@ export class CategoryComponent implements OnInit {
  connection.start()
    .then(() => data.ready = true)
    .catch(console.error)
- 
-  //  console.log('this.iMenuCount : '+this.iMenuCount +' this.iColCount : '+this.iColCount +
-  //  'this.iRowCount : ' +this.iRowCount);
+
    //--------------SignalR Connection -Ends---------------
-  
+
    }
 
 
-   
-   newMessage = (message) =>{ 
-  
+
+   newMessage = (message) =>{
+
    console.log('current screen is : '+this.showScreen);
-  
-   if(this.showScreen ==='categoryList'){ 
+
+   if(this.showScreen ==='categoryList'){
     this.iPosition=document.getElementById('current').innerHTML;
     this.iColCount  = parseInt(document.getElementById('colnum').innerHTML);
     this.iRowCount = this.iMenuCount / this.iColCount;
-    console.log('this.iMenuCount : '+this.iMenuCount +' this.iColCount : '+this.iColCount +
-    'this.iRowCount : ' +this.iRowCount);
     this.setPosition(message.text, this.iMenuCount, this.iPosition);
    }
 	}
 
 	 setPosition =   (iGesture, iMenuCount, iPosition) =>{
-    console.log('iGesture : ' +iGesture+' set position in cat ' +(iPosition / this.iColCount) );
-		var bLeft = false;
+    var bLeft = false;
 		var bRight = false;
 		var bUp = false;
 		var bDown = false;
 		var bBack = false;
-		var bClick = false;
+    var bClick = false;
+    var bHome = false;
 		var iCurrent = parseInt(iPosition);
-		
+
 		if (iGesture == "left") {
 			bLeft = true;
 		} else if (iGesture == "right") {
@@ -124,37 +114,43 @@ export class CategoryComponent implements OnInit {
 			bBack = true;
 		} else if (iGesture == "click") {
 			bClick = true;
+		} else if (iGesture == "home") {
+			bHome = true;
 		}
-		
+
 		if (bLeft == true && iPosition > 0) {
-      console.log('cat left');
-			var iPos = iCurrent-1;
+      var iPos = iCurrent-1;
 			if ((iPos % this.iColCount) < (this.iRowCount - 1)) {
        	this.categoryListComponent.navigateMenu(iPos, iPosition);
 			}
 		} else if (bRight == true && iPosition < (iMenuCount-1)) {
-      console.log('cat right');
-			var iPos = iCurrent+1;
+      var iPos = iCurrent+1;
 			if ((iPos % this.iColCount) > 0) {
 				this.categoryListComponent.navigateMenu(iPos, iPosition);
 			}
 		} else if (bUp == true && ((iPosition / this.iColCount) >= 1)) {
-      console.log('cat up' + 'iCurrent : '+iCurrent+' this.iColCount :'+this.iColCount);
        var iPos = iCurrent - this.iColCount;
-       console.log('iPos : '+iPos +' iPosition');
-			 this.categoryListComponent.navigateMenu(iPos, iPosition);
+       this.categoryListComponent.navigateMenu(iPos, iPosition);
 		} else if (bDown == true && ((iPosition / this.iColCount) < (this.iRowCount - 1))) {
-      console.log('cat down');
-			var iPos = iCurrent + this.iColCount;
+    	var iPos = iCurrent + this.iColCount;
 		  this.categoryListComponent.navigateMenu(iPos, iPosition);
 		} else if (bBack == true) {
-			window.history.back();
+      //window.history.back();
+      console.log('inside back');
+     // this.showScreen='menu';
+      //console.log(this.showScreen);
+      this.location.back();
+     // this.menuTabComponent.showCategoryList(iPos);
 		} else if (bClick == true) {
       var iPos = iCurrent;
+
       this.categoryListComponent.showNutritionalInfo(iPos);
 		/*	var cHref = $('#anchor'+ iPos).attr("href");
 			window.location.href = cHref;*/
-		}
+    }
+    else if(bHome == true){
+      window.location.href='';
+    }
 	}
 
 }

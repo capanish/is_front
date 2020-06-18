@@ -7,7 +7,7 @@ import { NutriInfoService } from '../../nutri-info/nutriInfo.service';
 
 @NgModule({
   imports: [
-       FormsModule      
+       FormsModule
   ]
 })
 
@@ -22,23 +22,22 @@ export class MenuTabComponent implements OnInit,OnChanges {
   @Input() menu: Menu;
   @Input() iVal : any;
   categoryItemsList: any=[];
-  
+
   constructor(private menuService: MenuService, private categoryService : CategoryService,
     private nutriInfoService : NutriInfoService) { }
 
   ngOnInit() {
       //Set background image for selected menu item
        this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
-      
+
       }
 
       ngAfterViewInit(){
         var elementC = document.getElementById('0');
         elementC.classList.add("active");
         elementC.classList.add("selected");
-
       }
-   
+
   ngOnChanges(){
         this.menuItem.emit(this.menu);
   }
@@ -46,16 +45,8 @@ export class MenuTabComponent implements OnInit,OnChanges {
       //this.menuService.menuSelected.emit(this.menu.image);
       this.menuService.menuSelected.emit(this.menuService.menuItems[iVal].image);
       this.categoryService.showScreenE.emit('menu');
-      
-    }/*
-  showCategoryList(event){
-    //Set menu id for selected menu item
-    var element=document.getElementById(iCurrent);
-    this.menuService.menuIdSelected.emit(event.target.id);
-    this.menuService.menuNameSelected.emit(this.menu.menuName)
-    this.categoryItemsList=this.categoryService.getCategoryList(event.target.id);
-    this.menuService.selectedCategoryList.emit(this.categoryItemsList);
- }*/
+
+    }
 
  showCategoryList=(iVal) =>{
   //Set menu id for selected menu item
@@ -79,6 +70,6 @@ export class MenuTabComponent implements OnInit,OnChanges {
   document.getElementById('current').innerHTML=iPosition;
 
 }
- 
+
 
 }

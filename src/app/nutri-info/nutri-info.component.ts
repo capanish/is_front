@@ -4,7 +4,9 @@ import { CategoryService } from '../category/category.service';
 import { MenuService } from '../menu/menu.service';
 import { NutriInfo } from './nutriInfo.model';
 import * as signalR from '@microsoft/signalr';
+import { Location } from '@angular/common';
 import { NutriInfoButtonsComponent } from '../nutri-info/nutri-info-buttons/nutri-info-buttons.component';
+import { Router } from '@angular/router';
 
 //-------SignalR-Starts------
 const data = { ready: false };
@@ -30,20 +32,19 @@ export class NutriInfoComponent implements OnInit {
   //------SingnalR- variable declaration -Ends------
 
   constructor(private nutriInfoService: NutriInfoService, private categoryService: CategoryService,
-    private menuService: MenuService) { }
+    private menuService: MenuService, private location: Location, private route : Router) { }
 
   ngOnInit() {
 
     this.categoryService.showScreenE.subscribe(resImgF => {
       this.showScreen = resImgF;
-      console.log('resImgF : '+resImgF);
-    });
+     });
     /*
    this.nutriInfoService.showScreenE.subscribe(resImgF => {
     console.log('resImgF : '+resImgF);
     this.showScreen = resImgF;
   });*/
-  
+
     /*this.menuService.nutritionalInformationEM.subscribe(resLst =>{
       console.log(resLst);
      this.nutritionalInformation=resLst;
@@ -52,7 +53,6 @@ export class NutriInfoComponent implements OnInit {
 */
     this.nutriInfoService.nutritionalInfoE.subscribe(res => {
       this.nutritionalInformation = res;
-      console.log(this.nutritionalInformation.id);
     });
 
  //--------------SignalR Connection -Starts---------------
@@ -70,13 +70,11 @@ connection.start()
   }
 
 
-  
+
   //------------SignalR Methods -Start------------
  newMessage = (message) => {
 
-  console.log('current in nutri info screen is : '+this.showScreen);
- if(this.showScreen ==='nutriInfo'){ 
-   console.log('inside newMessage nutriInfo');
+ if(this.showScreen ==='nutriInfo'){
    this.iPosition=document.getElementById('current').innerHTML;
    this.setPosition(message.text, iMenuCount, this.iPosition);
  }
@@ -87,7 +85,8 @@ setPosition =(iGesture, iMenuCount, iPosition) =>{
    var iCurrent = parseInt(iPosition);
    var bBack = false;
    var bClick = false;
- 
+   var bHome = false;
+
    if (iGesture == 'left') {
      bLeft = true;
    } else if (iGesture == 'right') {
@@ -96,8 +95,10 @@ setPosition =(iGesture, iMenuCount, iPosition) =>{
      bBack = true;
    } else if (iGesture == "click") {
      bClick = true;
-   }
-   
+   }else if (iGesture == "home") {
+    bHome = true;
+  }
+
    if (bLeft == true && iPosition > 0) {
       var iPos = iCurrent-1;
      this.nutriInfoButtonsComponent.navigateMenu(iPos, iPosition);
@@ -105,11 +106,17 @@ setPosition =(iGesture, iMenuCount, iPosition) =>{
        var iPos = iCurrent+1;
        this.nutriInfoButtonsComponent.navigateMenu(iPos, iPosition);
    } else if (bBack == true) {
-     window.history.back();
+   // window.history.state.prevUrl;
+     console.log('back nutri');
+     this.route.navigate(["/menu/categories"]);
+    // this.location.back();
+    // this.showScreen='categoryList';
    } else if (bClick == true) {
      var iPos = iCurrent;
-     //this.nutriInfoButtonsComponent.showCategoryList(iPos);
    }
+   else if(bHome == true){
+    window.location.href='';
+  }
  }
  //-----------SignalR Methods -End-----------
 

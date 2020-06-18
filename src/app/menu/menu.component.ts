@@ -8,6 +8,7 @@ import { MenuTabComponent } from '../menu/menu-tab/menu-tab.component';
 //import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
 import { CategoryService } from '../category/category.service';
+import { Router} from '@angular/router';
 
  //-------SignalR-Starts------
  const data = { ready : false};
@@ -37,13 +38,14 @@ export class MenuComponent implements OnInit {
   categoryLst :Category[];
   imageName : string;
   showScreen :string ='menu';
-  
+
   //------SingnalR- variable declaration -Starts-----
   iPosition : any;
   @ViewChild  (MenuTabComponent) menuTabComponent: MenuTabComponent;
 //------SingnalR- variable declaration -Ends------
- 
-constructor(private http: HttpClient, private menuService: MenuService, private categoryService : CategoryService) { }
+
+constructor(private http: HttpClient, private menuService: MenuService,
+   private categoryService : CategoryService, private router: Router) { }
 
  getMenuObj(menuItem){
     this.bgImgObj=menuItem.image;
@@ -52,6 +54,7 @@ constructor(private http: HttpClient, private menuService: MenuService, private 
  }
 
  ngOnInit() {
+
   this.menuItems = this.menuService.getMenuItems();
   this.menuService.menuCountE.subscribe(resCount =>{
     iMenuCount=resCount;
@@ -77,13 +80,13 @@ ngAfterViewInit(){
   this.menuService.menuSelected.subscribe(resImgN => {
     this.imageName=resImgN;
   });
+
+
 }
 
   //------------SignalR Methods -Start------------
  newMessage = (message) => {
-   console.log('current screen is : '+this.showScreen);
-  if(this.showScreen ==='menu'){ 
-    console.log('inside newMessage menu');
+  if(this.showScreen ==='menu'){
     this.iPosition=document.getElementById('current').innerHTML;
     this.setPosition(message.text, iMenuCount, this.iPosition);
   }
@@ -94,7 +97,7 @@ ngAfterViewInit(){
 		var iCurrent = parseInt(iPosition);
 		var bBack = false;
 		var bClick = false;
-	
+
 		if (iGesture == 'left') {
 			bLeft = true;
 		} else if (iGesture == 'right') {
@@ -104,7 +107,7 @@ ngAfterViewInit(){
 		} else if (iGesture == "click") {
 			bClick = true;
 		}
-		
+
 		if (bLeft == true && iPosition > 0) {
      	var iPos = iCurrent-1;
 			this.menuTabComponent.navigateMenu(iPos, iPosition);
@@ -112,12 +115,20 @@ ngAfterViewInit(){
         var iPos = iCurrent+1;
       	this.menuTabComponent.navigateMenu(iPos, iPosition);
 		} else if (bBack == true) {
-			window.history.back();
+    //	window.history.back();
+      console.log("in menu back");
 		} else if (bClick == true) {
+      console.log("in menu click");
       var iPos = iCurrent;
-      this.menuTabComponent.showCategoryList(iPos);
-		}
-  }
+       if(iPos==0){
+          this.router.navigate(['/menu/myList']);
+        }else if(iPos==1){
+          this.router.navigate(['/menu/recipe']);
+        }else{
+          this.menuTabComponent.showCategoryList(iPos);
+        }
+    }
+}
   //-----------SignalR Methods -End-----------
 
    }
