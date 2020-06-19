@@ -1,7 +1,7 @@
 import { Menu } from './menu.model';
 import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { NutriInfo} from '../nutri-info/nutriInfo.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class MenuService implements OnInit {
@@ -11,7 +11,7 @@ export class MenuService implements OnInit {
     menuImageSelected = new EventEmitter<string>();
     selectedCategoryList = new EventEmitter();
     nutritionalInformationEM = new EventEmitter();
-    
+    showScreenE = new EventEmitter<string>();
 
     public menuItems: any;
     public menuCount:number =0;
@@ -24,7 +24,7 @@ export class MenuService implements OnInit {
      this.http.get('http://localhost:8081/apiInteractiveRetailStore/v1/menus')
      .subscribe(menu => {
                this.menuItems=menu;
-              
+
              for(let menuItem of this.menuItems){
                 menuLoop.push(new Menu(menuItem.id, menuItem.menuName,
                     menuItem.image,menuItem.Active,
@@ -34,17 +34,17 @@ export class MenuService implements OnInit {
             this.menuCountE.emit(this.menuCount);
          }
        );
-       
+
 
          this.menuItems = menuLoop;
          return this.menuItems;
  }
-    
+
     ngOnInit() {
-     
+
      }
 
-    
+
 
     }
-  
+

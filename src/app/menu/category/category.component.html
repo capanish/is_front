@@ -1,0 +1,14 @@
+<div *ngIf="showScreen ==='categoryList'">
+  <div [style.background-image]="'url('+menuImage+')'" class="catBGImg">
+  </div>
+  <div class="catName">{{menuName}}</div>
+  <div class="catDiv">
+    <app-category-list class="catList" *ngFor="let catItem of categoryList;let i=index;" [cat]="catItem" [iVal]="i">
+    </app-category-list>
+
+  </div>
+</div>
+<div>
+  <app-nutri-info></app-nutri-info>
+</div>
+<script src="http://code.angularjs.org/1.2.1/angular-route.js"></script>

@@ -1,0 +1,26 @@
+.recipeDiv{
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  width: 85%;
+  padding-bottom: 18%;
+  padding-right: 15%;
+  height: 100%;
+}
+
+.recipeItemDiv{
+  width: 50%;
+  padding-top: 10%;
+  padding-left: 10%;
+  color: black;
+}
+
+.recipeItemDiv.inactive{
+  color: grey;
+}
+.recipeBtns{
+  width: 100%;
+
+}

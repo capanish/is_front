@@ -1,0 +1,25 @@
+.myListDiv{
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  width: 85%;
+  padding-bottom: 18%;
+  padding-right: 15%;
+  height: 100%;
+}
+
+.myListItemDiv{
+  width: 50%;
+  padding-top: 10%;
+  padding-left: 10%;
+  color: black;
+}
+
+.myListItemDiv.inactive{
+  color: grey;
+}
+.myListBtns{
+  width: 100%;
+}

@@ -1,0 +1,26 @@
+<!-- <div class="myListDiv" [style.background-image]="'url('+imageName+')'">
+  <!-- Left Panel -->
+  <!-- <div class="myListItemDiv">
+   <app-my-list-items *ngFor="let listItem of listItems;let i=index;" [item]="listItem"
+  [iVal]="i"></app-my-list-items>
+</div> -->
+  <!-- Center Panel -->
+
+<!-- </div> -->
+
+<div class="myListDiv" [style.background-image]="'url('+imageName+')'">
+  <!-- Left Panel -->
+  <div class="myListItemDiv">
+    <app-my-list-items *ngFor="let listItem of listItems;let i=index;" [item]="listItem" [iVal]="i"></app-my-list-items>
+  </div>
+  <!-- Center Panel -->
+  <div class="myListBtns">
+    <app-my-list-buttons></app-my-list-buttons>
+  </div>
+</div>
+
+<div style="display: none">
+  <div id="current">0</div>
+  <div id="leftcurrent">0</div>
+  <div id="rightcurrent">0</div>
+</div>

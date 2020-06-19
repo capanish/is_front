@@ -1,0 +1,38 @@
+.sideNavBtn{
+  width: 45%;
+ border-radius: 5px;
+ border-style: solid;
+ outline: 0;
+/* color: black;*/
+ border-color: honeydew;
+ box-shadow: honeydew;
+ font-family: 'Arial Narrow';
+ font-weight: lighter;
+ letter-spacing: 0;
+ text-align: center;
+ font-size: medium;
+ font-weight: bold;
+ margin-bottom: 2%;
+ padding: 2%;
+}
+
+div {
+ display: block;
+}
+
+.sideNavBtn.active{
+ outline: 0;
+ box-shadow: 0 0 0 3px grey;
+ color:grey;
+}
+.sideNavBtn.inactive{
+  color:white;
+  background-color: grey;
+}
+
+.selected{
+ outline: 0;
+ box-shadow: 0 0 0 3px grey;
+ color:grey;
+
+}

@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter,NgModule } from '@angular/core';
 import { Menu } from './../menu.model'
 import { MenuService } from './../menu.service';
-import { CategoryService } from '../../category/category.service';
+import { CategoryService } from '../category/category.service';
 import { FormsModule } from '@angular/forms';
-import { NutriInfoService } from '../../nutri-info/nutriInfo.service';
+import { NutriInfoService } from '../category/nutri-info/nutriInfo.service';
+import { RecipeService } from '../recipe/recipe.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ export class MenuTabComponent implements OnInit,OnChanges {
   categoryItemsList: any=[];
 
   constructor(private menuService: MenuService, private categoryService : CategoryService,
-    private nutriInfoService : NutriInfoService) { }
+    private nutriInfoService : NutriInfoService, private recipeService : RecipeService) { }
 
   ngOnInit() {
       //Set background image for selected menu item
@@ -44,7 +45,8 @@ export class MenuTabComponent implements OnInit,OnChanges {
   changeBackgroundImage(iVal){
       //this.menuService.menuSelected.emit(this.menu.image);
       this.menuService.menuSelected.emit(this.menuService.menuItems[iVal].image);
-      this.categoryService.showScreenE.emit('menu');
+      this.menuService.showScreenE.emit('menu');
+     //this.categoryService.showScreenE.emit('menu');
 
     }
 
@@ -58,7 +60,9 @@ export class MenuTabComponent implements OnInit,OnChanges {
   this.menuService.selectedCategoryList.emit(this.categoryItemsList);
 }
 
-
+showRecipe=() =>{
+  this.recipeService.getRecipeItems();
+}
  navigateMenu = (iPosition, iCurrent) => {
   var elementC = document.getElementById(iCurrent);
   var elementP =document.getElementById(iPosition);

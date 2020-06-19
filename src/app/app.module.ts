@@ -5,16 +5,17 @@ import { AppRoutingModule  } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent} from './menu/menu.component';
 import { MenuTabComponent } from './menu/menu-tab/menu-tab.component';
-import { MenuImageComponent } from './menu/menu-image/menu-image.component';
 import { FormsModule } from '@angular/forms';
-import { CategoryComponent } from './category/category.component';
-import { CategoryListComponent } from './category/category-list/category-list.component';
-import { NutriInfoComponent } from './nutri-info/nutri-info.component';
-import { NutriInfoButtonsComponent } from './nutri-info/nutri-info-buttons/nutri-info-buttons.component';
-import { RecipeComponent } from './recipe/recipe.component';
-import { MyListComponent } from './my-list/my-list.component';
-import { RecipeItemsComponent } from './recipe/recipe-items/recipe-items.component';
-import { MyListItemsComponent } from './my-list/my-list-items/my-list-items.component';
+import { CategoryComponent } from './menu/category/category.component';
+import { CategoryListComponent } from './menu/category/category-list/category-list.component';
+import { NutriInfoComponent } from './menu/category/nutri-info/nutri-info.component';
+import { NutriInfoButtonsComponent } from './menu/category/nutri-info/nutri-info-buttons/nutri-info-buttons.component';
+import { RecipeComponent } from './menu/recipe/recipe.component';
+import { MyListComponent } from './menu/my-list/my-list.component';
+import { RecipeItemsComponent } from './menu/recipe/recipe-items/recipe-items.component';
+import { MyListItemsComponent } from './menu/my-list/my-list-items/my-list-items.component';
+import { RecipeButtonsComponent } from './menu/recipe/recipe-buttons/recipe-buttons.component';
+import { MyListButtonsComponent } from './menu/my-list/my-list-buttons/my-list-buttons.component';
 
 
 
@@ -23,7 +24,6 @@ import { MyListItemsComponent } from './my-list/my-list-items/my-list-items.comp
     AppComponent,
     MenuComponent,
     MenuTabComponent,
-    MenuImageComponent,
     CategoryComponent,
     CategoryListComponent,
     NutriInfoComponent,
@@ -31,7 +31,9 @@ import { MyListItemsComponent } from './my-list/my-list-items/my-list-items.comp
     RecipeComponent,
     MyListComponent,
     RecipeItemsComponent,
-    MyListItemsComponent
+    MyListItemsComponent,
+    RecipeButtonsComponent,
+    MyListButtonsComponent
   ],
   imports: [
     BrowserModule,

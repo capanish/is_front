@@ -1,0 +1,18 @@
+
+<div class="recipeDiv" [style.background-image]="'url('+imageName+')'">
+  <!-- Left Panel -->
+  <div class="recipeItemDiv">
+   <app-recipe-items *ngFor="let recipeItem of recipes;let i=index;" [recipe]="recipeItem"
+  [iVal]="i"></app-recipe-items>
+</div>
+  <!-- Center Panel -->
+<div class="recipeBtns">
+  <app-recipe-buttons></app-recipe-buttons>
+</div>
+</div>
+
+<div style="display: none">
+	<div id="current">0</div>
+	<div id="leftcurrent">0</div>
+	<div id="rightcurrent">0</div>
+</div>

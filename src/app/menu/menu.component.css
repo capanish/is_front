@@ -8,7 +8,7 @@
 .menuFlex{
     display: flex;
     padding-left: 5%;
-  
+
 }
 .menuBG{
     position:inherit;
@@ -17,3 +17,9 @@
     width: 100%;
     bottom: 0;
    }
+
+.recipeMainDiv{
+  position: absolute;
+  height: 73%;
+  width: 87%;
+}
