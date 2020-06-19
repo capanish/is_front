@@ -16,6 +16,7 @@ import { RecipeItemsComponent } from './menu/recipe/recipe-items/recipe-items.co
 import { MyListItemsComponent } from './menu/my-list/my-list-items/my-list-items.component';
 import { RecipeButtonsComponent } from './menu/recipe/recipe-buttons/recipe-buttons.component';
 import { MyListButtonsComponent } from './menu/my-list/my-list-buttons/my-list-buttons.component';
+import { HeaderComponent } from './menu/header/header.component';
 
 
 
@@ -33,7 +34,8 @@ import { MyListButtonsComponent } from './menu/my-list/my-list-buttons/my-list-b
     RecipeItemsComponent,
     MyListItemsComponent,
     RecipeButtonsComponent,
-    MyListButtonsComponent
+    MyListButtonsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
