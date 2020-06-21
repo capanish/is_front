@@ -79,6 +79,7 @@ export class NutriInfoComponent implements OnInit {
 
   //------------SignalR Methods -Start------------
   newMessage = (message) => {
+    console.log('NF new message');
     if (this.showScreen === "nutriInfo") {
       this.iPosition = document.getElementById("current").innerHTML;
       this.setPosition(message.text, iMenuCount, this.iPosition);
@@ -111,15 +112,18 @@ export class NutriInfoComponent implements OnInit {
       var iPos = iCurrent + 1;
       this.nutriInfoButtonsComponent.navigateMenu(iPos, iPosition);
     } else if (bBack == true) {
+       // this.showScreen='categoryList';
+       console.log('>>>>>>>>>>>>>>');
+      this.menuService.showScreenE.emit('categoryList');
       // window.history.state.prevUrl;
 
       //this.route.navigate(["/menu/categories"]);
-       this.location.back();
+      // this.location.back();
       // this.showScreen='categoryList';
     } else if (bClick == true) {
-      var iPos = iCurrent;
+       var iPos = iCurrent;
     } else if (bHome == true) {
-      window.location.href = "";
+      window.location.href = "/home";
     }
   };
   //-----------SignalR Methods -End-----------

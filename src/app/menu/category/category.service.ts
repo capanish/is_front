@@ -23,8 +23,7 @@ export class CategoryService implements OnInit {
      this.http.get('http://localhost:8081/apiInteractiveRetailStore/v1/categoryList/menu/'+menuId)
      .subscribe(category => {
                 this.categoryItems=category;
-                console.log('list cmng is : '+this.categoryItems);
-                 for(let res1 of this.categoryItems){
+                for(let res1 of this.categoryItems){
                    categoryLoop.push(new Category(res1.id, res1.subMenuName,
                         new Menu(res1.menuId.id, res1.menuId.menuName, res1.menuId.image,
                           res1.menuId.Active, res1.menuId.notification),

@@ -4,6 +4,8 @@ import { RecipeService } from '../recipe/recipe.service';
 import * as signalR from '@microsoft/signalr';
 import { RecipeButtonsComponent } from '../recipe/recipe-buttons/recipe-buttons.component';
 import { MenuService } from '../menu.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
  //-------SignalR-Starts------
  const data = { ready : false};
@@ -28,7 +30,8 @@ export class RecipeComponent implements OnInit {
     @ViewChild  (RecipeButtonsComponent) recipeButtonsComponent: RecipeButtonsComponent;
   //------SingnalR- variable declaration -Ends------
 
-  constructor(private recipeService: RecipeService, private menuService : MenuService) { }
+  constructor(private recipeService: RecipeService, private menuService : MenuService,
+    private location : Location, private route: Router) { }
 
   ngOnInit() {
 
@@ -90,52 +93,52 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
   } else if (iGesture == "click") {
     bClick = true;
   }
-  console.log('inside set position'+iGesture);
 
-	if (iCurrent == 0) { console.log('inside icurren1 block');
+	if (iCurrent == 0) { console.log('inside icurren0 block');
     if (bRight == true) {
-      console.log('inside 0 right');
       var iPos = 0;
       this.navigateMenuSwitch(iCurrent, iPos, iCurrentLeft);
 
     } else if (bUp == true && ((iCurrentLeft - 1) >= 0)) {
-      console.log('inside 0 up');
       var iPos = iCurrentLeft - 1;
       this.navigateMenuLeft(iPos, iCurrentLeft, 0);
 
     } else if (bDown == true && (iCurrentLeft < (iMenuCount-1))) {
-      console.log('inside 0 down');
-      var iPos = iCurrentLeft + 1;
+       var iPos = iCurrentLeft + 1;
       this.navigateMenuLeft(iPos, iCurrentLeft, 1);
 
     } else if (bBack == true) {
-      window.history.back();
+      console.log('inside 0 back');
+      window.location.href='/home';
+     // window.history.go(-1);
+    // this.location.back();
+     //this.route.navigate(['/home']);
     } else if (bClick == true) {
-
       var iPos = iCurrentLeft; console.log('inside 0 click'+iCurrentLeft );
       this.imageName=this.recipes[iPos].image;
-      console.log( this.imageName);
-
     }
   } else if (iCurrent == 1) {
     console.log('inside icurren1 block');
     if (bLeft == true && iCurrentRight > 0) {
-      console.log('inside 11 left');
-      var iPos = iCurrentRight-1;
+       var iPos = iCurrentRight-1;
       this.navigateMenuRight(iPos, iCurrentRight, 0);
     } else if (bLeft == true && iCurrentRight == 0) {
-      console.log('inside 12 left');
       var iPos = iCurrentLeft;
       this.navigateMenuSwitch(iCurrent, iPos, 0);
-      //this.recipeButtonsComponent.navigateMenuSwitch(iCurrent, iPos, 0);
+
     }
     if (bRight == true && iCurrentRight < (iItemCount-1)) {
-      console.log('inside 1 right');
+
       var iPos = iCurrentRight+1;
+
       this.navigateMenuRight(iPos, iCurrentRight, 0);
-    //  this.recipeItemsComponent.navigateMenuRight(iPos, iCurrentRight, 1);
+
     } else if (bBack == true) {
-      window.history.back();
+      console.log('inside 1 back');
+      window.location.href='/home';
+    //  window.history.back();
+      // this.location.back();
+      //this.route.navigate(['/home']);
     } else if (bClick == true) {
       console.log('inside 1 click');
       var iPos = iCurrent;

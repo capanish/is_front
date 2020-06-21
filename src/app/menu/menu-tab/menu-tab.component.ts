@@ -5,6 +5,7 @@ import { CategoryService } from '../category/category.service';
 import { FormsModule } from '@angular/forms';
 import { NutriInfoService } from '../category/nutri-info/nutriInfo.service';
 import { RecipeService } from '../recipe/recipe.service';
+import { MenuComponent } from '../menu.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ export class MenuTabComponent implements OnInit,OnChanges {
   @Input() menu: Menu;
   @Input() iVal : any;
   categoryItemsList: any=[];
-
+  selectedElementId : any=0;
   constructor(private menuService: MenuService, private categoryService : CategoryService,
     private nutriInfoService : NutriInfoService, private recipeService : RecipeService) { }
 
@@ -34,7 +35,13 @@ export class MenuTabComponent implements OnInit,OnChanges {
       }
 
       ngAfterViewInit(){
-        var elementC = document.getElementById('0');
+        this.menuService.sMenuId.subscribe(res =>{
+          console.log('menu res selected  : '+res);
+          this.selectedElementId=res;
+        });
+        console.log('menu selected  : '+this.selectedElementId);
+        var elementC = document.getElementById( this.selectedElementId);
+        //var elementC = document.getElementById('0');
         elementC.classList.add("active");
         elementC.classList.add("selected");
       }
@@ -54,6 +61,8 @@ export class MenuTabComponent implements OnInit,OnChanges {
   //Set menu id for selected menu item
   var elementId=document.getElementById(iVal).getAttribute('name');
   this.menuService.menuIdSelected.emit(parseInt(elementId));
+  this.selectedElementId=parseInt(elementId);
+  console.log(' this.selectedElementId : '+ this.selectedElementId);
   this.menuService.menuNameSelected.emit(this.menuService.menuItems[iVal].menuName);
   this.menuService.menuImageSelected.emit(this.menuService.menuItems[iVal].image);
   this.categoryItemsList=this.categoryService.getCategoryList(parseInt(elementId));

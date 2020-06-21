@@ -4,6 +4,7 @@ import { MyListService } from './my-list.service';
 //import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
 import { MyListButtonsComponent} from '../my-list/my-list-buttons/my-list-buttons.component';
+import { Router,ActivatedRoute } from '@angular/router';
 
 
  //-------SignalR-Starts------
@@ -24,12 +25,15 @@ export class MyListComponent implements OnInit {
   listItems:MyList[];
   imageName : string;
   showScreen : string='menu';
-
+ // router: Router;
    //------SingnalR- variable declaration -Starts-----
    @ViewChild  (MyListButtonsComponent) myListButtonsComponent: MyListButtonsComponent;
  //------SingnalR- variable declaration -Ends------
 
-  constructor(private myListService: MyListService) { }
+  constructor(private myListService: MyListService, private router: Router,
+     private route: ActivatedRoute) {
+    //this.router=router;
+   }
 
   ngOnInit() {
     this.listItems=this.myListService.getMyListItems();
@@ -111,7 +115,11 @@ export class MyListComponent implements OnInit {
         this.navigateMenuLeft(iPos, iCurrentLeft, 1);
 
       } else if (bBack == true) {
-        window.history.back();
+       // window.history.back();
+      //window.location.href='/home';
+      console.log('<<<<<<<<<<<<<<<');
+       window.location.href='/home?menu='+1;
+     //  this.router.navigate['/home'];
       } else if (bClick == true) {
         var iPos = iCurrentLeft;
         this.imageName=this.listItems[iPos].image;
@@ -134,7 +142,9 @@ export class MyListComponent implements OnInit {
         var iPos = iCurrentRight+1;
         this.navigateMenuRight(iPos, iCurrentRight, 0);
       } else if (bBack == true) {
-        window.history.back();
+       // window.history.back();
+       console.log('<<<<<<<<<<<<<<<');
+       window.location.href='/home?menu='+1;
       } else if (bClick == true) {
         //var iPos = iCurrent;
        // this.imageName=this.listItems[iPos].image;

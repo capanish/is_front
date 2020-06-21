@@ -9,6 +9,7 @@ import { MenuTabComponent } from '../menu/menu-tab/menu-tab.component';
 import * as signalR from '@microsoft/signalr';
 import { CategoryService } from './category/category.service';
 import { Router} from '@angular/router';
+import { stringify } from 'querystring';
 
  //-------SignalR-Starts------
  const data = { ready : false};
@@ -38,7 +39,7 @@ export class MenuComponent implements OnInit {
   categoryLst :Category[];
   imageName : string;
   showScreen :string ='menu';
-
+  sMenuId :any;
   //------SingnalR- variable declaration -Starts-----
   iPosition : any;
   @ViewChild  (MenuTabComponent) menuTabComponent: MenuTabComponent;
@@ -55,10 +56,14 @@ constructor(private http: HttpClient, private menuService: MenuService,
 
  ngOnInit() {
 
+  const queryString = window.location.search;
+  console.log('queryString :' +queryString);
+
   this.menuItems = this.menuService.getMenuItems();
   this.menuService.menuCountE.subscribe(resCount =>{
     iMenuCount=resCount;
    });
+
    /*
    this.categoryService.showScreenE.subscribe(resImgF =>{
     this.showScreen= resImgF;
@@ -89,7 +94,7 @@ ngAfterViewInit(){
 }
 
   //------------SignalR Methods -Start------------
- newMessage = (message) => {
+ newMessage = (message) => {console.log('menu new message');
   if(this.showScreen ==='menu'){
     this.iPosition=document.getElementById('current').innerHTML;
     this.setPosition(message.text, iMenuCount, this.iPosition);
@@ -122,17 +127,21 @@ ngAfterViewInit(){
     //	window.history.back();
 
 		} else if (bClick == true) {
-
       var iPos = iCurrent;
+      this.sMenuId=iCurrent;
+      var elementId=document.getElementById(this.sMenuId).getAttribute('name');
+      console.log ('u clicked on : '+elementId);
+      this.menuService.sMenuId.emit(parseInt(elementId));
        if(iPos==0){
+
           this.router.navigate(['/home/myList']);
           this.menuService.showScreenE.emit("myList");
         }else if(iPos==1){
           this.router.navigate(['/home/recipe']);
           this.menuService.showScreenE.emit("recipe");
-          this.menuTabComponent.showRecipe();
+          //this.menuTabComponent.showRecipe();
         }else{
-         // this.router.navigate(['/home/categories']);
+          this.router.navigate(['/home/categories']);
           this.menuService.showScreenE.emit("categoryList");
           this.menuTabComponent.showCategoryList(iPos);
         }

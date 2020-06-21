@@ -81,7 +81,7 @@ export class CategoryComponent implements OnInit {
   }
 
   newMessage = (message) => {
-
+console.log('cat new message');
     if (this.showScreen === "categoryList") {
       this.iPosition = document.getElementById("current").innerHTML;
       this.iColCount = parseInt(document.getElementById("colnum").innerHTML);
@@ -129,27 +129,25 @@ export class CategoryComponent implements OnInit {
     } else if (bUp == true && iPosition / this.iColCount >= 1) {
       var iPos = iCurrent - this.iColCount;
       this.categoryListComponent.navigateMenu(iPos, iPosition);
-    } else if (
-      bDown == true &&
-      iPosition / this.iColCount < this.iRowCount - 1
-    ) {
+    } else if (bDown == true && iPosition / this.iColCount < this.iRowCount - 1) {
       var iPos = iCurrent + this.iColCount;
       this.categoryListComponent.navigateMenu(iPos, iPosition);
     } else if (bBack == true) {
+      console.log('category back'+this.menuId);
+      window.location.href='/home';
       //window.history.back();
 
       // this.showScreen='menu';
       //console.log(this.showScreen);
-      this.location.back();
+     // this.location.back();
       // this.menuTabComponent.showCategoryList(iPos);
     } else if (bClick == true) {
       var iPos = iCurrent;
-
       this.categoryListComponent.showNutritionalInfo(iPos);
       /*	var cHref = $('#anchor'+ iPos).attr("href");
 			window.location.href = cHref;*/
     } else if (bHome == true) {
-      window.location.href = "";
+      window.location.href = "/home";
     }
   };
 }
