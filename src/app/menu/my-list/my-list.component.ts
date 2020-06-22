@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild,Output } from '@angular/core';
 import { MyList } from './my-list.model';
 import { MyListService } from './my-list.service';
 //import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
 import { MyListButtonsComponent} from '../my-list/my-list-buttons/my-list-buttons.component';
 import { Router,ActivatedRoute } from '@angular/router';
+import { MenuService } from '../menu.service';
 
 
  //-------SignalR-Starts------
@@ -25,15 +26,13 @@ export class MyListComponent implements OnInit {
   listItems:MyList[];
   imageName : string;
   showScreen : string='menu';
- // router: Router;
+  sMenuId :number;
+
    //------SingnalR- variable declaration -Starts-----
    @ViewChild  (MyListButtonsComponent) myListButtonsComponent: MyListButtonsComponent;
  //------SingnalR- variable declaration -Ends------
 
-  constructor(private myListService: MyListService, private router: Router,
-     private route: ActivatedRoute) {
-    //this.router=router;
-   }
+  constructor(private myListService: MyListService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.listItems=this.myListService.getMyListItems();
@@ -64,7 +63,6 @@ export class MyListComponent implements OnInit {
   //------------SignalR Methods -Start------------
  newMessage = (message) => {
   // if(this.showScreen ==='recipe'){
-     console.log('inside new message myList');
      var iPosition=document.getElementById('current').innerHTML;
      var iPositionLeft = document.getElementById('leftcurrent').innerHTML;
      var iPositionRight = document.getElementById('rightcurrent').innerHTML;
@@ -79,6 +77,7 @@ export class MyListComponent implements OnInit {
     var bDown = false;
     var bBack = false;
     var bClick = false;
+    var bHome = false;
     var iCurrent = parseInt(iPosition);
     var iCurrentLeft = parseInt(iPositionLeft);
     var iCurrentRight = parseInt(iPositionRight);
@@ -95,60 +94,74 @@ export class MyListComponent implements OnInit {
       bBack = true;
     } else if (iGesture == "click") {
       bClick = true;
+    } else if (iGesture == "home") {
+      bHome = true;
     }
-    console.log('inside set position'+iGesture);
 
-    if (iCurrent == 0) { console.log('inside icurren1 block');
+
+
+    if (iCurrent == 0) {
       if (bRight == true) {
-        console.log('inside 0 right');
         var iPos = 0;
         this.navigateMenuSwitch(iCurrent, iPos, iCurrentLeft);
 
       } else if (bUp == true && ((iCurrentLeft - 1) >= 0)) {
-        console.log('inside 0 up');
         var iPos = iCurrentLeft - 1;
         this.navigateMenuLeft(iPos, iCurrentLeft, 0);
 
       } else if (bDown == true && (iCurrentLeft < (iMenuCount-1))) {
-        console.log('inside 0 down');
         var iPos = iCurrentLeft + 1;
         this.navigateMenuLeft(iPos, iCurrentLeft, 1);
 
       } else if (bBack == true) {
+          //--------Added to highlight previously selected item---
+      /*  this.route.queryParamMap .subscribe(params => {
+              this.sMenuId = +params.get('id')||0;
+        console.log("********my list************* "+this.sMenuId);
+      });
+       window.location.href='/home?id='+ this.sMenuId;*/
+
        // window.history.back();
-      //window.location.href='/home';
-      console.log('<<<<<<<<<<<<<<<');
-       window.location.href='/home?menu='+1;
+      window.location.href='/home';
      //  this.router.navigate['/home'];
       } else if (bClick == true) {
         var iPos = iCurrentLeft;
         this.imageName=this.listItems[iPos].image;
 
       }
+      else if (bHome == true) {
+        window.location.href = "/home";
+      }
     } else if (iCurrent == 1) {
-      console.log('inside icurren1 block');
+
       if (bLeft == true && iCurrentRight > 0) {
-        console.log('inside 11 left');
+
         var iPos = iCurrentRight-1;
         this.navigateMenuRight(iPos, iCurrentRight, 0);
       } else if (bLeft == true && iCurrentRight == 0) {
-        console.log('inside 12 left');
+
         var iPos = iCurrentLeft;
         this.navigateMenuSwitch(iCurrent, iPos, 0);
 
       }
       if (bRight == true && iCurrentRight < (iItemCount-1)) {
-        console.log('inside 1 right');
         var iPos = iCurrentRight+1;
         this.navigateMenuRight(iPos, iCurrentRight, 0);
       } else if (bBack == true) {
-       // window.history.back();
-       console.log('<<<<<<<<<<<<<<<');
-       window.location.href='/home?menu='+1;
-      } else if (bClick == true) {
+         //--------Added to highlight previously selected item---
+      /*  this.route.queryParamMap .subscribe(params => {
+              this.sMenuId = +params.get('id')||0;
+        console.log("********my list************* "+this.sMenuId);
+      });
+       window.location.href='/home?id='+ this.sMenuId;*/
+       window.location.href='/home';
+     } else if (bClick == true) {
         //var iPos = iCurrent;
        // this.imageName=this.listItems[iPos].image;
 
+      }
+      else if (bHome == true) {
+        window.location.href = "/home";
       }
     }
   }
@@ -170,7 +183,7 @@ export class MyListComponent implements OnInit {
     document.getElementById('current').innerHTML="1";
     document.getElementById('rightcurrent').innerHTML=iPosition;
   }
-  navigateMenuSwitch(iCurrent, iPos, iCurrentLeft) { console.log(' navigateMenuSwitch : '+iCurrent);
+  navigateMenuSwitch(iCurrent, iPos, iCurrentLeft) {
   if (iCurrent == 0) {
     document.getElementById('nav'+iCurrentLeft).classList.remove("active");
     document.getElementById('nav'+iCurrentLeft).classList.remove("selected");
@@ -187,7 +200,6 @@ export class MyListComponent implements OnInit {
     document.getElementById('current').innerHTML="0";
    }
 }
-
     //-----------SignalR Methods -End-----------
 
   }

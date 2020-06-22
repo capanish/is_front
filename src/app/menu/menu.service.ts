@@ -12,7 +12,7 @@ export class MenuService implements OnInit {
     selectedCategoryList = new EventEmitter();
     nutritionalInformationEM = new EventEmitter();
     showScreenE = new EventEmitter<string>();
-    sMenuId = new EventEmitter<number>();
+    sMenuId = new EventEmitter();
     public menuItems: any;
     public menuCount:number =0;
     menuCountE = new EventEmitter();

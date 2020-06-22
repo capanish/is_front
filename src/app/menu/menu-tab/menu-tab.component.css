@@ -1,8 +1,8 @@
 .menuTab{
-    padding-top: 5%; 
+    padding-top: 5%;
     padding-bottom: 5%;
     padding-left: 6%;
-   
+
 }
 .menuBtn{
     width: 65%;
@@ -19,7 +19,15 @@
     font-weight: lighter;
     letter-spacing: 0;
     /* word-wrap: break-word; */
-     
+
+}
+.MyList{
+  /* background-color: rgb(236, 65, 65); */
+  background:linear-gradient(to top, hsl(0, 95%, 17%) 0%,  hsl(0, 97%, 50%) 100%);
+}
+.Recipes{
+  /* background-color: Black; */
+  background:linear-gradient(to top, hsl(0, 0%, 9%) 0%,  #8a8888 100%);
 }
 .Veggies{
     /*background-color: rgb(98, 228, 98);*/
@@ -29,10 +37,7 @@
    /* background-color: rgb(240, 102, 11);*/
    background:linear-gradient(to top, #502b01 0%,  #e06805 100%);
 }
-.MyList{
-    /* background-color: rgb(236, 65, 65); */
-    background:linear-gradient(to top, hsl(0, 95%, 17%) 0%,  hsl(0, 97%, 50%) 100%);
-  }
+
 .Fish{
     /* background-color: rgb(85, 183, 240); */
     background:linear-gradient(to top, hsl(249, 98%, 16%) 0%,  rgb(75, 104, 236) 100%);
@@ -43,10 +48,7 @@
     background:linear-gradient(to top, hsl(59, 88%, 29%) 0%,  hsl(56, 96%, 45%) 100%);
 }
 
-.Recipes{
-    /* background-color: Black; */
-    background:linear-gradient(to top, hsl(0, 0%, 9%) 0%,  #8a8888 100%);
-}
+
 
 .selected{
     padding: 15%;
@@ -60,6 +62,14 @@
   box-shadow: 0 0 0 3px hsl(0, 95%, 17%) ;
   background: ivory;
   color: hsl(0, 95%, 17%) ;
+}
+
+.Recipes.active {
+  outline: 0;
+  border-color: black;
+  box-shadow: 0 0 0 3px black;
+  background: ivory;
+  color: black;
 }
 
 .Veggies.active{
@@ -78,13 +88,6 @@
     color: hsl(0, 95%, 17%);
   }
 
-  .Recipes.active {
-    outline: 0;
-    border-color: black;
-    box-shadow: 0 0 0 3px black;
-    background: ivory;
-    color: black;
-  }
   .Deals.active {
     outline: 0;
     border-color: hsl(59, 88%, 29%) ;
@@ -98,4 +101,4 @@
     box-shadow: 0 0 0 3px hsl(249, 98%, 16%);
     background: ivory;
     color: hsl(249, 98%, 16%);
-} 
+}

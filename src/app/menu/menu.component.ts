@@ -1,4 +1,4 @@
-import { Component, OnInit, Input , NgModule, ViewChild} from '@angular/core';
+import { Component, OnInit, Input , NgModule, ViewChild, ViewChildren} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuService } from './menu.service';
 import {Menu} from './menu.model';
@@ -7,9 +7,8 @@ import { Category } from './category/category.model';
 import { MenuTabComponent } from '../menu/menu-tab/menu-tab.component';
 //import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
-import { CategoryService } from './category/category.service';
-import { Router} from '@angular/router';
-import { stringify } from 'querystring';
+import { Router,ActivatedRoute} from '@angular/router';
+
 
  //-------SignalR-Starts------
  const data = { ready : false};
@@ -37,16 +36,18 @@ export class MenuComponent implements OnInit {
   menuName : string;
   menuItems:Menu[];
   categoryLst :Category[];
-  imageName : string;
+  imageName : string = 'assets/images/mylist.jpeg';
   showScreen :string ='menu';
   sMenuId :any;
+
   //------SingnalR- variable declaration -Starts-----
   iPosition : any;
   @ViewChild  (MenuTabComponent) menuTabComponent: MenuTabComponent;
+
 //------SingnalR- variable declaration -Ends------
 
 constructor(private http: HttpClient, private menuService: MenuService,
-   private categoryService : CategoryService, private router: Router) { }
+  private router: Router, private route: ActivatedRoute) { }
 
  getMenuObj(menuItem){
     this.bgImgObj=menuItem.image;
@@ -55,9 +56,11 @@ constructor(private http: HttpClient, private menuService: MenuService,
  }
 
  ngOnInit() {
-
-  const queryString = window.location.search;
-  console.log('queryString :' +queryString);
+   //--------Added to highlight previously selected item---
+  /*this.route.queryParamMap
+       .subscribe(params => {
+     this.sMenuId = +params.get('id')||0;
+   });*/
 
   this.menuItems = this.menuService.getMenuItems();
   this.menuService.menuCountE.subscribe(resCount =>{
@@ -94,7 +97,7 @@ ngAfterViewInit(){
 }
 
   //------------SignalR Methods -Start------------
- newMessage = (message) => {console.log('menu new message');
+ newMessage = (message) => {
   if(this.showScreen ==='menu'){
     this.iPosition=document.getElementById('current').innerHTML;
     this.setPosition(message.text, iMenuCount, this.iPosition);
@@ -129,21 +132,24 @@ ngAfterViewInit(){
 		} else if (bClick == true) {
       var iPos = iCurrent;
       this.sMenuId=iCurrent;
-      var elementId=document.getElementById(this.sMenuId).getAttribute('name');
-      console.log ('u clicked on : '+elementId);
-      this.menuService.sMenuId.emit(parseInt(elementId));
-       if(iPos==0){
 
+       if(iPos==0){
+        //  this.router.navigate(['/home/myList'],{queryParams:{ id:  this.sMenuId }});
           this.router.navigate(['/home/myList']);
           this.menuService.showScreenE.emit("myList");
+
         }else if(iPos==1){
-          this.router.navigate(['/home/recipe']);
+         // this.router.navigate(['/home/recipe'],{queryParams:{ id:  this.sMenuId }});
+         this.router.navigate(['/home/recipe']);
           this.menuService.showScreenE.emit("recipe");
+
           //this.menuTabComponent.showRecipe();
         }else{
+          //this.router.navigate(['/home/categories'],{queryParams:{ id:  this.sMenuId }});
           this.router.navigate(['/home/categories']);
           this.menuService.showScreenE.emit("categoryList");
           this.menuTabComponent.showCategoryList(iPos);
+
         }
     }
 }

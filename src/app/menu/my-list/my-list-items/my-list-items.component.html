@@ -1,5 +1,13 @@
 <div class="sideNavBtn" id="nav{{item.id}}">
  {{item.itemName}}
+ <div  *ngIf="item.active">
+  <input type="checkbox" checked="checked">
+ </div>
+ <div *ngIf="item.active!=1">
+  <input type="checkbox" >
+ </div>
+
+
 </div>
 
 

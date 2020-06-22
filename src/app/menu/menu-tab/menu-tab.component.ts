@@ -3,9 +3,8 @@ import { Menu } from './../menu.model'
 import { MenuService } from './../menu.service';
 import { CategoryService } from '../category/category.service';
 import { FormsModule } from '@angular/forms';
-import { NutriInfoService } from '../category/nutri-info/nutriInfo.service';
 import { RecipeService } from '../recipe/recipe.service';
-import { MenuComponent } from '../menu.component';
+import { ActivatedRoute } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -24,24 +23,31 @@ export class MenuTabComponent implements OnInit,OnChanges {
   @Input() menu: Menu;
   @Input() iVal : any;
   categoryItemsList: any=[];
-  selectedElementId : any=0;
+  selectedElementId : any;
   constructor(private menuService: MenuService, private categoryService : CategoryService,
-    private nutriInfoService : NutriInfoService, private recipeService : RecipeService) { }
+    private recipeService : RecipeService,private route: ActivatedRoute) { }
 
   ngOnInit() {
       //Set background image for selected menu item
        this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
-
-      }
+        //--------Added to highlight previously selected item---
+      /* this.route.queryParamMap .subscribe(params => {
+        this.selectedElementId = +params.get('id')||0;
+        console.log("********Tab*on************ "+this.selectedElementId);
+      });*/
+    }
 
       ngAfterViewInit(){
-        this.menuService.sMenuId.subscribe(res =>{
-          console.log('menu res selected  : '+res);
-          this.selectedElementId=res;
+         //--------Added to highlight previously selected item---
+        /*
+          this.route.queryParamMap .subscribe(params => {
+          this.selectedElementId = +params.get('id')||0;
+          console.log("********Tab************* "+this.selectedElementId);
         });
-        console.log('menu selected  : '+this.selectedElementId);
-        var elementC = document.getElementById( this.selectedElementId);
-        //var elementC = document.getElementById('0');
+           console.log('menu selected  : '+this.selectedElementId);
+       var elementC = document.getElementById(this.selectedElementId);*/
+
+        var elementC = document.getElementById('0');
         elementC.classList.add("active");
         elementC.classList.add("selected");
       }
@@ -61,8 +67,6 @@ export class MenuTabComponent implements OnInit,OnChanges {
   //Set menu id for selected menu item
   var elementId=document.getElementById(iVal).getAttribute('name');
   this.menuService.menuIdSelected.emit(parseInt(elementId));
-  this.selectedElementId=parseInt(elementId);
-  console.log(' this.selectedElementId : '+ this.selectedElementId);
   this.menuService.menuNameSelected.emit(this.menuService.menuItems[iVal].menuName);
   this.menuService.menuImageSelected.emit(this.menuService.menuItems[iVal].image);
   this.categoryItemsList=this.categoryService.getCategoryList(parseInt(elementId));
@@ -72,6 +76,7 @@ export class MenuTabComponent implements OnInit,OnChanges {
 showRecipe=() =>{
   this.recipeService.getRecipeItems();
 }
+
  navigateMenu = (iPosition, iCurrent) => {
   var elementC = document.getElementById(iCurrent);
   var elementP =document.getElementById(iPosition);

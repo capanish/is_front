@@ -5,7 +5,8 @@ import * as signalR from '@microsoft/signalr';
 import { RecipeButtonsComponent } from '../recipe/recipe-buttons/recipe-buttons.component';
 import { MenuService } from '../menu.service';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute} from '@angular/router';
+
 
  //-------SignalR-Starts------
  const data = { ready : false};
@@ -26,12 +27,13 @@ export class RecipeComponent implements OnInit {
   @Input() imageName : string;
   showScreen : string= 'recipe';
 
+  sMenuId :number;
+
   //------SingnalR- variable declaration -Starts-----
     @ViewChild  (RecipeButtonsComponent) recipeButtonsComponent: RecipeButtonsComponent;
   //------SingnalR- variable declaration -Ends------
 
-  constructor(private recipeService: RecipeService, private menuService : MenuService,
-    private location : Location, private route: Router) { }
+  constructor(private recipeService: RecipeService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -61,7 +63,6 @@ export class RecipeComponent implements OnInit {
  //------------SignalR Methods -Start------------
  newMessage = (message) => {
  // if(this.showScreen ==='recipe'){
-    console.log('inside new message recipe');
     var iPosition=document.getElementById('current').innerHTML;
     var iPositionLeft = document.getElementById('leftcurrent').innerHTML;
 		var iPositionRight = document.getElementById('rightcurrent').innerHTML;
@@ -76,6 +77,7 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
   var bDown = false;
   var bBack = false;
   var bClick = false;
+  var bHome = false;
   var iCurrent = parseInt(iPosition);
   var iCurrentLeft = parseInt(iPositionLeft);
   var iCurrentRight = parseInt(iPositionRight);
@@ -92,9 +94,11 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
     bBack = true;
   } else if (iGesture == "click") {
     bClick = true;
+  }else if (iGesture == "home") {
+    bHome = true;
   }
 
-	if (iCurrent == 0) { console.log('inside icurren0 block');
+	if (iCurrent == 0) {
     if (bRight == true) {
       var iPos = 0;
       this.navigateMenuSwitch(iCurrent, iPos, iCurrentLeft);
@@ -108,17 +112,25 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
       this.navigateMenuLeft(iPos, iCurrentLeft, 1);
 
     } else if (bBack == true) {
-      console.log('inside 0 back');
+         //--------Added to highlight previously selected item---
+   /*   this.route.queryParamMap .subscribe(params => {
+        this.sMenuId = +params.get('id')||0;
+       console.log("********my list************* "+this.sMenuId);
+     });
+      window.location.href='/home?id='+ this.sMenuId;*/
       window.location.href='/home';
      // window.history.go(-1);
     // this.location.back();
      //this.route.navigate(['/home']);
     } else if (bClick == true) {
-      var iPos = iCurrentLeft; console.log('inside 0 click'+iCurrentLeft );
+      var iPos = iCurrentLeft;
       this.imageName=this.recipes[iPos].image;
     }
+    else if (bHome == true) {
+      window.location.href = "/home";
+    }
   } else if (iCurrent == 1) {
-    console.log('inside icurren1 block');
+
     if (bLeft == true && iCurrentRight > 0) {
        var iPos = iCurrentRight-1;
       this.navigateMenuRight(iPos, iCurrentRight, 0);
@@ -134,17 +146,21 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
       this.navigateMenuRight(iPos, iCurrentRight, 0);
 
     } else if (bBack == true) {
-      console.log('inside 1 back');
+       //--------Added to highlight previously selected item---
+    /*  this.route.queryParamMap .subscribe(params => {
+        this.sMenuId = +params.get('id')||0;
+       console.log("********my list************* "+this.sMenuId);
+     });
+      window.location.href='/home?id='+ this.sMenuId;*/
+
       window.location.href='/home';
-    //  window.history.back();
-      // this.location.back();
-      //this.route.navigate(['/home']);
     } else if (bClick == true) {
-      console.log('inside 1 click');
+
       var iPos = iCurrent;
       this.imageName=this.recipes[iPos].image;
-      // var cHref = "menu.html";
-      // window.location.href = cHref;
+     }
+     else if (bHome == true) {
+      window.location.href = "/home";
     }
   }
 }
@@ -167,7 +183,7 @@ navigateMenuLeft(iPosition, iCurrent, iDirection) {
   document.getElementById('current').innerHTML="1";
   document.getElementById('rightcurrent').innerHTML=iPosition;
 }
-navigateMenuSwitch(iCurrent, iPos, iCurrentLeft) { console.log(' navigateMenuSwitch : '+iCurrent);
+navigateMenuSwitch(iCurrent, iPos, iCurrentLeft) {
   if (iCurrent == 0) {
     document.getElementById('nav'+iCurrentLeft).classList.remove("active");
     document.getElementById('nav'+iCurrentLeft).classList.remove("selected");

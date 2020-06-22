@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
-import { Location } from "@angular/common";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MenuService } from "../../menu/menu.service";
 import { Category } from "./category.model";
 import { CategoryService } from "./category.service";
 import { CategoryListComponent } from "./category-list/category-list.component";
-//import { HubConnection } from '@microsoft/signalr';
+import { ActivatedRoute } from "@angular/router";
 import * as signalR from "@microsoft/signalr";
 
 //-------SignalR-Starts------
@@ -25,7 +24,7 @@ export class CategoryComponent implements OnInit {
   categoryList: Category[];
   showMenuImg: any = "true";
   showScreen: string ='menu';
-
+  sMenuId : number;
   //------SingnalR- variable declaration -Starts-----
   iPosition: any;
   @ViewChild(CategoryListComponent)
@@ -39,7 +38,7 @@ export class CategoryComponent implements OnInit {
   constructor(
     private menuService: MenuService,
     private categoryService: CategoryService,
-    private location: Location
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -81,8 +80,7 @@ export class CategoryComponent implements OnInit {
   }
 
   newMessage = (message) => {
-console.log('cat new message');
-    if (this.showScreen === "categoryList") {
+  if (this.showScreen === "categoryList") {
       this.iPosition = document.getElementById("current").innerHTML;
       this.iColCount = parseInt(document.getElementById("colnum").innerHTML);
       this.iRowCount = this.iMenuCount / this.iColCount;
@@ -133,7 +131,13 @@ console.log('cat new message');
       var iPos = iCurrent + this.iColCount;
       this.categoryListComponent.navigateMenu(iPos, iPosition);
     } else if (bBack == true) {
-      console.log('category back'+this.menuId);
+       //--------Added to highlight previously selected item---
+/*
+      this.route.queryParamMap .subscribe(params => {
+        this.sMenuId = +params.get('id')||0;
+       console.log("********cate************* "+this.sMenuId);
+     });
+      window.location.href='/home?id='+ this.sMenuId;*/
       window.location.href='/home';
       //window.history.back();
 

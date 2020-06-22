@@ -35,7 +35,7 @@ export class NutriInfoButtonsComponent implements OnInit {
     var elementLC = document.getElementById('lbl'+iCurrent);
     var elementP =document.getElementById(iPosition);
     var elementLP = document.getElementById('lbl'+iPosition);
-  
+
     elementC.classList.remove("active");
     elementLC.classList.remove("active");
     elementP.classList.add("active");
@@ -44,9 +44,6 @@ export class NutriInfoButtonsComponent implements OnInit {
       this.btnImage[iPosition]=this.btnImageActive[iPosition];
       this.btnImage[iCurrent]=this.btnImageInActive[iCurrent];
     }
-    
-
-    document.getElementById('current').innerHTML=iPosition;
-  
-  }
+      document.getElementById('current').innerHTML=iPosition;
+    }
 }

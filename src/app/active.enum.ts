@@ -1,4 +1,4 @@
 export enum Active {
-    Y,
-    N
+    Y=1,
+    N=0
 }

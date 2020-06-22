@@ -49,8 +49,7 @@ export class MyListButtonsComponent implements OnInit {
   }
 
   addRemoveButtonState(state){
-    console.log('addRemoveButtonState : '+state);
-    var elementB = document.getElementById('0');
+     var elementB = document.getElementById('0');
     if(state==='active'){
 
       elementB.classList.add("active");

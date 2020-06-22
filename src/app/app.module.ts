@@ -17,6 +17,8 @@ import { MyListItemsComponent } from './menu/my-list/my-list-items/my-list-items
 import { RecipeButtonsComponent } from './menu/recipe/recipe-buttons/recipe-buttons.component';
 import { MyListButtonsComponent } from './menu/my-list/my-list-buttons/my-list-buttons.component';
 import { HeaderComponent } from './menu/header/header.component';
+import { CarouselComponent } from './carousel/carousel.component';
+
 
 
 
@@ -35,14 +37,15 @@ import { HeaderComponent } from './menu/header/header.component';
     MyListItemsComponent,
     RecipeButtonsComponent,
     MyListButtonsComponent,
-    HeaderComponent
+    HeaderComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-  ],
+     ],
   providers: [],
   bootstrap: [AppComponent]
 })
