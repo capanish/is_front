@@ -23,3 +23,13 @@
 .myListBtns{
   width: 100%;
 }
+
+.mName{
+  padding-left: 8%;
+  font-weight: bold;
+  font-size: medium;
+  color : black;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: 'Roboto';
+  z-index: 9997;
+}

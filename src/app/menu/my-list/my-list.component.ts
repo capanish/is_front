@@ -27,18 +27,25 @@ export class MyListComponent implements OnInit {
   imageName : string;
   showScreen : string='menu';
   sMenuId :number;
+  menuPos :any;
+  menuName : string;
 
    //------SingnalR- variable declaration -Starts-----
    @ViewChild  (MyListButtonsComponent) myListButtonsComponent: MyListButtonsComponent;
  //------SingnalR- variable declaration -Ends------
 
-  constructor(private myListService: MyListService, private route: ActivatedRoute) { }
+  constructor(private myListService: MyListService, private route: ActivatedRoute,
+    private menuService : MenuService) { }
 
   ngOnInit() {
     this.listItems=this.myListService.getMyListItems();
     this.imageName=this.listItems[0].image;
      iMenuCount=this.listItems.length;
 
+     this.route.queryParamMap .subscribe(params => {
+      this.menuPos = +params.get('tab')||0;
+    });
+    this.menuName=this.menuService.menuItems[this.menuPos].menuName;
      //--------------SignalR Connection -Starts---------------
   const connection = new signalR.HubConnectionBuilder()
   .withUrl(apiBaseUrl+'/signalr')
@@ -57,12 +64,11 @@ export class MyListComponent implements OnInit {
     var elementC = document.getElementById('nav0');
     elementC.classList.add("active");
     elementC.classList.add("selected");
-
   }
 
   //------------SignalR Methods -Start------------
  newMessage = (message) => {
-  // if(this.showScreen ==='recipe'){
+  // if(this.showScreen ==='myList'){
      var iPosition=document.getElementById('current').innerHTML;
      var iPositionLeft = document.getElementById('leftcurrent').innerHTML;
      var iPositionRight = document.getElementById('rightcurrent').innerHTML;
@@ -171,7 +177,9 @@ export class MyListComponent implements OnInit {
 
     document.getElementById('nav'+iCurrent).classList.remove("active");
     document.getElementById('nav'+iCurrent).classList.remove("selected");
+    document.getElementById('ck'+iCurrent).classList.remove("checkBox");
     document.getElementById('nav'+iPosition).classList.add("active");
+    document.getElementById('ck'+iPosition).classList.add("checkBoxIn");
     document.getElementById('current').innerHTML="0";
     document.getElementById('leftcurrent').innerHTML=iPosition;
   }
@@ -187,7 +195,9 @@ export class MyListComponent implements OnInit {
   if (iCurrent == 0) {
     document.getElementById('nav'+iCurrentLeft).classList.remove("active");
     document.getElementById('nav'+iCurrentLeft).classList.remove("selected");
+    document.getElementById('ck'+iCurrentLeft).classList.remove("checkBox");
     document.getElementById('nav'+iCurrentLeft).classList.add("inactive");
+    document.getElementById('ck'+iCurrentLeft).classList.add("checkBoxIn");
     document.getElementsByClassName('myListItemDiv')[0].classList.add("inactive");
     document.getElementById('current').innerHTML="1";
     this.myListButtonsComponent.addRemoveButtonState('active');
@@ -196,6 +206,8 @@ export class MyListComponent implements OnInit {
      this.myListButtonsComponent.addRemoveButtonState('inactive');
     document.getElementById('nav'+iPos).classList.remove("inactive");
     document.getElementById('nav'+iPos).classList.add("active");
+    document.getElementById('ck'+iPos).classList.remove("checkBoxIn");
+    document.getElementById('ck'+iPos).classList.add("checkBox");
     document.getElementsByClassName('myListItemDiv')[0].classList.remove("inactive");
     document.getElementById('current').innerHTML="0";
    }

@@ -15,9 +15,11 @@
     color: honeydew;
     border-color: honeydew;
     box-shadow: honeydew;
-    font-family: 'Arial Narrow';
+    /* font-family: 'Arial Narrow'; */
+    font-family: 'Roboto';
     font-weight: lighter;
     letter-spacing: 0;
+    position: relative;
     /* word-wrap: break-word; */
 
 }
@@ -101,4 +103,21 @@
     box-shadow: 0 0 0 3px hsl(249, 98%, 16%);
     background: ivory;
     color: hsl(249, 98%, 16%);
+}
+
+.notification{
+  color: honeydew;
+  background-color: red;
+  font-size: small;
+  font-family: 'Roboto';
+  border-radius: 50%;
+  width: 100%;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+.notifDiv{
+  bottom: 12%;
+  position: absolute;
+  width: 4%;
+  padding-left: 9%;
 }

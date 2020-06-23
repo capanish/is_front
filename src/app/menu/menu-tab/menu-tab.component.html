@@ -2,7 +2,9 @@
 <div class="menuTab" >
    <button  class="menuBtn" name={{menu.id}} id={{iVal}}
    [ngClass]="(menu.menuName =='My List')?'MyList' : menu.menuName">{{menu.menuName}}</button>
-
+<div  *ngIf="menu.notification!=0" class="notifDiv">
+  <span class="notification">{{menu.notification}}</span>
+</div>
  </div>
  <div style="display: none">
 	<div id="current">0</div>

@@ -1,14 +1,15 @@
 .menuTabDiv{
-    background-image:linear-gradient(to bottom #e8eee8 0%);
+   /* background-image:linear-gradient(to bottom #e8eee8 0%);*/
     padding-top: 41%;
     background-size: cover;
     width: 100%;
     vertical-align: middle;
+    background-image:linear-gradient(to top, #e8eee8 10%,  #e8eee8 10%);
     }
 .menuFlex{
     display: flex;
     padding-left: 5%;
-
+    background: linear-gradient(to top, #e8eee8, transparent);
 }
 .menuBG{
     position:inherit;
@@ -23,3 +24,5 @@
   height: 73%;
   width: 87%;
 }
+
+

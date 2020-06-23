@@ -8,6 +8,7 @@ import { MenuTabComponent } from '../menu/menu-tab/menu-tab.component';
 //import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
 import { Router,ActivatedRoute} from '@angular/router';
+import { MyListService } from './my-list/my-list.service';
 
 
  //-------SignalR-Starts------
@@ -47,7 +48,7 @@ export class MenuComponent implements OnInit {
 //------SingnalR- variable declaration -Ends------
 
 constructor(private http: HttpClient, private menuService: MenuService,
-  private router: Router, private route: ActivatedRoute) { }
+  private router: Router, private route: ActivatedRoute, private myListService : MyListService) { }
 
  getMenuObj(menuItem){
     this.bgImgObj=menuItem.image;
@@ -134,16 +135,17 @@ ngAfterViewInit(){
       this.sMenuId=iCurrent;
 
        if(iPos==0){
-        //  this.router.navigate(['/home/myList'],{queryParams:{ id:  this.sMenuId }});
-          this.router.navigate(['/home/myList']);
+          //this.router.navigate(['/home/myList'],{queryParams:{ id:  this.sMenuId }});
+          //this.router.navigate(['/home/myList']);
+          this.router.navigate(['/home/myList'],{queryParams:{tab: iPos}});
           this.menuService.showScreenE.emit("myList");
 
         }else if(iPos==1){
-         // this.router.navigate(['/home/recipe'],{queryParams:{ id:  this.sMenuId }});
-         this.router.navigate(['/home/recipe']);
-          this.menuService.showScreenE.emit("recipe");
+         //this.router.navigate(['/home/recipe'],{queryParams:{ id:  this.sMenuId }});
+         //this.router.navigate(['/home/recipe']);
+         this.router.navigate(['/home/recipe'],{queryParams:{tab: iPos}});
+         this.menuService.showScreenE.emit("recipe");
 
-          //this.menuTabComponent.showRecipe();
         }else{
           //this.router.navigate(['/home/categories'],{queryParams:{ id:  this.sMenuId }});
           this.router.navigate(['/home/categories']);

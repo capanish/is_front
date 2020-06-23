@@ -77,6 +77,10 @@ showRecipe=() =>{
   this.recipeService.getRecipeItems();
 }
 
+showMenuName=(iVal) =>{
+  this.menuService.menuNameSelected.emit(this.menuService.menuItems[iVal].menuName);
+}
+
  navigateMenu = (iPosition, iCurrent) => {
   var elementC = document.getElementById(iCurrent);
   var elementP =document.getElementById(iPosition);

@@ -26,21 +26,26 @@ export class RecipeComponent implements OnInit {
   recipes:Recipe[];
   @Input() imageName : string;
   showScreen : string= 'recipe';
-
   sMenuId :number;
+  menuPos :any;
+  menuName : string;
 
   //------SingnalR- variable declaration -Starts-----
     @ViewChild  (RecipeButtonsComponent) recipeButtonsComponent: RecipeButtonsComponent;
   //------SingnalR- variable declaration -Ends------
 
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute) { }
+  constructor(private recipeService: RecipeService, private route: ActivatedRoute,
+    private menuService : MenuService) { }
 
   ngOnInit() {
 
     this.recipes=this.recipeService.getRecipeItems();
     this.imageName=this.recipes[0].image;
     iMenuCount=this.recipes.length;
-
+    this.route.queryParamMap .subscribe(params => {
+      this.menuPos = +params.get('tab')||0;
+    });
+    this.menuName=this.menuService.menuItems[this.menuPos].menuName;
     //--------------SignalR Connection -Starts---------------
   const connection = new signalR.HubConnectionBuilder()
   .withUrl(apiBaseUrl+'/signalr')

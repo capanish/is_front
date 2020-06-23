@@ -21,6 +21,7 @@ export class MyListService implements OnInit {
     public listItemCount:number =0;
     @Input() mId =new EventEmitter<number>();
 
+    menuNameE = new EventEmitter();
     constructor(private http:HttpClient){}
 
     ngOnInit() {

@@ -18,7 +18,8 @@
       top: 10%;
       left: 8%;
       font-weight: normal;
-      font-family: 'Arial';
+      /* font-family: 'Arial'; */
+      font-family: 'Roboto';
   }
 
   .lbl.active{
