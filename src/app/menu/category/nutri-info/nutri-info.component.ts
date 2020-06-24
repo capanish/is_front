@@ -20,10 +20,11 @@ var iMenuCount: number = 5;
   styleUrls: ["./nutri-info.component.css"],
 })
 export class NutriInfoComponent implements OnInit {
-  //@Input()
+
   nutritionalInformation: NutriInfo;
   infoId: number;
   showScreen: string;
+  menuName: string;
 
   //------SingnalR- variable declaration -Starts-----
   iPosition: any;

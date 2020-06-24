@@ -17,12 +17,11 @@
 }
 
 .sideNavBtn.active{
-  /* outline: 0; */
-   /* box-shadow: 0 0 0 3px grey; */
-   color: black;
-   background: white;
-   border: none;
-   /* margin-right: 10px;*/
+  color: black;
+    background: white;
+    border: none;
+    font-size: large;
+    box-shadow: 0 0 10px;
  }
  .sideNavBtn.inactive{
    color:white;

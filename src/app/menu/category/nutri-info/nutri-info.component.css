@@ -1,12 +1,31 @@
 .bckGImage{
-    height: -webkit-fill-available; 
+    height: -webkit-fill-available;
     width:-webkit-fill-available;
 }
 .nutriBGImg{
-    /* z-index: -1;*/
    position: absolute;
-   width: 100%;
+   width: 98.8%;
    height: 100%;
    background-repeat: no-repeat;
    background-size: cover;
+}
+
+.nTitleDiv{
+  font-weight: bolder;
+    font-size: large;
+    color: black;
+    font-family: 'Roboto';
+    z-index: 9997;
+    position: absolute;
+    width: 48.85%;
+    height: 10%;
+    background: linear-gradient(to bottom, #e8eee8, transparent);
+}
+
+.nTitle{
+  padding-top: 2%;
+    padding-left: 4%;
+    position: absolute;
+    font-size: x-large;
+    font-weight: bolder;
 }

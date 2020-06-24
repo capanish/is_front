@@ -1,7 +1,6 @@
 <div  *ngIf="showScreen === 'nutriInfo'">
-
-  <div
-    [style.background-image]="'url(' + nutritionalInformation.image + ')'"
+  <div class="nTitleDiv"><span class="nTitle">{{nutritionalInformation.name}}</span></div>
+  <div  [style.background-image]="'url(' + nutritionalInformation.image + ')'"
     class="nutriBGImg">
   </div>
   <app-nutri-info-buttons></app-nutri-info-buttons>

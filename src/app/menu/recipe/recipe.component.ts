@@ -62,7 +62,7 @@ export class RecipeComponent implements OnInit {
   ngAfterViewInit(){
     var elementC = document.getElementById('nav0');
     elementC.classList.add("active");
-    elementC.classList.add("selected");
+  //  elementC.classList.add("selected");
 
   }
  //------------SignalR Methods -Start------------
@@ -174,7 +174,7 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
 navigateMenuLeft(iPosition, iCurrent, iDirection) {
 
   document.getElementById('nav'+iCurrent).classList.remove("active");
-  document.getElementById('nav'+iCurrent).classList.remove("selected");
+//  document.getElementById('nav'+iCurrent).classList.remove("selected");
   document.getElementById('nav'+iPosition).classList.add("active");
   document.getElementById('current').innerHTML="0";
   document.getElementById('leftcurrent').innerHTML=iPosition;
@@ -191,7 +191,7 @@ navigateMenuLeft(iPosition, iCurrent, iDirection) {
 navigateMenuSwitch(iCurrent, iPos, iCurrentLeft) {
   if (iCurrent == 0) {
     document.getElementById('nav'+iCurrentLeft).classList.remove("active");
-    document.getElementById('nav'+iCurrentLeft).classList.remove("selected");
+  //  document.getElementById('nav'+iCurrentLeft).classList.remove("selected");
     document.getElementById('nav'+iCurrentLeft).classList.add("inactive");
     document.getElementsByClassName('recipeItemDiv')[0].classList.add("inactive");
     document.getElementById('current').innerHTML="1";

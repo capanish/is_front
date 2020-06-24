@@ -9,13 +9,11 @@ import { MenuService } from '../menu.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() dateTime: any;
+ // @Input() dateTime: any;
   today= new Date();
-  todayNumber: number = Date.now();
-  todayDate : Date = new Date();
-  constructor(private menuService : MenuService) {
-  //  this.dateTime = formatDate(this.today, 'dd/MM/yyyy hh:mm:ss a', 'en-US', '+0530');
-   }
+  // todayNumber: number = Date.now();
+  // todayDate : Date = new Date();
+  constructor() { }
 
   ngOnInit() {
 

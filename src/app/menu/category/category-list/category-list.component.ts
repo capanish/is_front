@@ -28,8 +28,6 @@ export class CategoryListComponent implements OnInit {
     var elementC = document.getElementById('0');
     elementC.classList.add("active");
     this.showName(0);
-   // elementC.classList.add("selected");
-
   }
    showName(iVal){
      var eleId=document.getElementById(iVal).getAttribute('name');

@@ -1,5 +1,4 @@
 .menuTabDiv{
-   /* background-image:linear-gradient(to bottom #e8eee8 0%);*/
     padding-top: 41%;
     background-size: cover;
     width: 100%;
@@ -27,7 +26,7 @@
   width: 48.84%;
   height: 10%;
   position: absolute;
-  top: 1.5%;
+  top: 1.2%;
   background: linear-gradient(to bottom, #e8eee8, transparent);
 }
 .recipeMainDiv{

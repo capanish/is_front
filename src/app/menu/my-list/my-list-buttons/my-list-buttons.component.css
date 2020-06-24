@@ -1,7 +1,7 @@
 .buttonLstDiv{
   position: absolute;
   top: 80%;
-  left: 38%;
+  left: 40%;
   z-index: 9999;
   margin: 0 auto;
   width: 30%;
@@ -19,16 +19,17 @@
       left: 8%;
       font-weight: normal;
       font-family: 'Roboto';
-  }
+      font-size: small;
+ }
 
   .lbl.active{
    font-weight: bold;
   }
-  .semi-transparent-button {
+  .centerButtons {
       box-sizing: border-box;
       margin: 0 auto;
-      width: 78%;
-      border-radius: 6px;
+      width: 90%;
+      border-radius: 5px;
       background: rgba(71, 67, 67, 0.5);
       border-color: transparent;
       margin-right: 1%;
@@ -41,9 +42,8 @@
 
     }
 
-    .semi-transparent-button.active{
+    .centerButtons.active{
       line-height: 10%;
-      /* font-size: large; */
       background: #fff;
       color: #000;
       background-repeat: no-repeat;

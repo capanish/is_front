@@ -1,8 +1,6 @@
 .catLstDiv{
     position: relative;
-    /* border-radius: 5px; */
-
-}
+ }
 .catLstImg{
     border-radius: 8px;
     border-style: solid;
@@ -16,9 +14,6 @@
 
 .catLstImg.active {
     outline: 0;
-    /* border-color: rgba(88, 100, 214, 0.418); */
-    /* box-shadow: 0 0 0 3px  rgba(88, 100, 214, 0.418); */
-   /* background:  rgb(246, 246, 248);*/
     vertical-align: middle;
     line-height: 10%;
     border-radius: 8px;
@@ -37,7 +32,6 @@
     font-weight: bold;
     font-size: x-large;
     color : black;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     font-family: 'Roboto';
 }
 
@@ -51,16 +45,3 @@
     width: 302px;
     border-radius: 8px;
 }
-/* .selected{
-    padding: 55%;
-    vertical-align: middle;
-    line-height: 10%;
-    font-size: large;
-} */
-/* .active {
-    outline: 0;
-    border-color: rgba(88, 100, 214, 0.418);
-    box-shadow: 0 0 0 3px  rgba(88, 100, 214, 0.418);
-    background:  rgba(88, 100, 214, 0.418);
-    opacity: 0.5;
-} */

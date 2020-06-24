@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 
-//import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 var slideIndex = 0;
 @Component({
   selector: "app-carousel",
@@ -9,7 +8,7 @@ var slideIndex = 0;
 
 })
 export class CarouselComponent implements OnInit {
-
+  today= new Date();
   constructor() {}
 
   ngOnInit() {
