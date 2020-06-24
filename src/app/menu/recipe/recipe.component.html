@@ -1,6 +1,6 @@
 
 <div class="recipeDiv" [style.background-image]="'url('+imageName+')'">
-  <div class="mName">{{menuName}}</div>
+  <div class="rTitleDiv"><span class="rTitle">{{menuName}}</span></div>
   <!-- Left Panel -->
   <div class="recipeItemDiv">
    <app-recipe-items *ngFor="let recipeItem of recipes;let i=index;" [recipe]="recipeItem"

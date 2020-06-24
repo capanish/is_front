@@ -7,9 +7,9 @@
     border-radius: 8px;
     border-style: solid;
     outline: 0;
-    color: honeydew;
-    border-color: honeydew;
-    box-shadow: honeydew;
+    color: white;
+    border-color: white;
+    box-shadow: white;
     height :140px;
     width : 300px;
 }
@@ -26,35 +26,6 @@
     background-image: linear-gradient(to bottom, transparent 0%, white 100%);
 
 }
-
-
-/* .catLstDiv.active{
-    outline: 0;
-    padding: 2%;
-    vertical-align: middle;
-    line-height: 10%;
-    border-radius: 8px;
-    border-style: solid;
-    color: honeydew;
-    border-color: honeydew;
-    box-shadow: honeydew;
-} */
-
-/* .catLstImg:hover {
-    outline: 0;
-    border-color: rgba(88, 100, 214, 0.418);
-    box-shadow: 0 0 0 3px  rgba(88, 100, 214, 0.418);
-    background:  rgba(88, 100, 214, 0.418);
-    opacity: 0.5;
-    padding: 10%;
-    vertical-align: middle;
-    line-height: 10%;
-    border-radius: 8px;
-    border-style: solid;
-    color: honeydew;
-    border-color: honeydew;
-    box-shadow: honeydew;
-} */
 
 .catLstImgName{
     display: none;
@@ -73,7 +44,7 @@
 .catLstImgNBG{
     display: none;
     position: absolute;
-    background-color: honeydew;
+    background-color: white;
     opacity: 0.7;
     z-index: 9999;
     height: 159px;

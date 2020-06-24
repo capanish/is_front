@@ -47,8 +47,7 @@ export class CategoryComponent implements OnInit {
     });
     this.menuService.menuNameSelected.subscribe((resName) => {
       this.menuName = resName;
-      console.log('this.menuName :'+this.menuName);
-    });
+   });
     this.menuService.menuImageSelected.subscribe((resImgName) => {
       this.menuImage = resImgName;
     });

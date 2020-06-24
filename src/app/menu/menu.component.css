@@ -18,7 +18,18 @@
     width: 100%;
     bottom: 0;
    }
-
+.menuHead{
+  font-weight: bold;
+  font-size: medium;
+  color: black;
+  font-family: 'Roboto';
+  z-index: 9997;
+  width: 48.84%;
+  height: 10%;
+  position: absolute;
+  top: 1.5%;
+  background: linear-gradient(to bottom, #e8eee8, transparent);
+}
 .recipeMainDiv{
   position: absolute;
   height: 73%;

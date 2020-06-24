@@ -2,7 +2,7 @@
 <app-header></app-header>
 
 <div *ngIf="showScreen === 'menu'" class="menuTabDiv" [style.background-image]="'url('+imageName+')'">
-
+  <div class="menuHead"><span></span></div>
   <div class="menuFlex">
     <app-menu-tab class="menuTab" *ngFor="let menuItem of menuItems;let i=index;" [menu]="menuItem"
       (menuItemSelected)="getMenuObj($event)" [iVal]="i">

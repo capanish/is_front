@@ -12,9 +12,9 @@
     border-radius: 5px;
     border-style: solid;
     outline: 0;
-    color: honeydew;
-    border-color: honeydew;
-    box-shadow: honeydew;
+    color: white;
+    border-color: white;
+    box-shadow: white;
     /* font-family: 'Arial Narrow'; */
     font-family: 'Roboto';
     font-weight: lighter;
@@ -106,7 +106,7 @@
 }
 
 .notification{
-  color: honeydew;
+  color: white;
   background-color: red;
   font-size: small;
   font-family: 'Roboto';

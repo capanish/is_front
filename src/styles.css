@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.mName{
+  /* padding-left: 8%; */
+  font-weight: bold;
+  font-size: medium;
+  color: black;
+  font-family: 'Roboto';
+  z-index: 9997;
+  width: 49.4%;
+  height: 10%;
+  /* background: red; */
+  background: linear-gradient(to bottom, #e8eee8, transparent);
+}

@@ -1,15 +1,17 @@
 .header{
   position: absolute;
-    margin: 0;
-    width: 48.7%;
-    padding-left: 50%;
-    height: 10%;
-    background: linear-gradient(to bottom, #e8eee8, transparent);
+  /* margin: 0; */
+  width: 50%;
+  height: 10%;
+  right: 0;
+  margin-right: 0.5%;
+  background: linear-gradient(to bottom, #e8eee8, transparent);
+  z-index: 9999;
 }
 .headerContent{
   position: relative;
-  left: 60%;
-  width: 35%;
+  left: 50%;
+  width: 37%;
   font-weight: bold;
   font-family: 'Roboto';
 }
