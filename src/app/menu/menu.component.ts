@@ -98,7 +98,8 @@ ngAfterViewInit(){
 		var bRight = false;
 		var iCurrent = parseInt(iPosition);
 		var bBack = false;
-		var bClick = false;
+    var bClick = false;
+    var bCarousel = false;
 
 		if (iGesture == 'left') {
 			bLeft = true;
@@ -108,6 +109,8 @@ ngAfterViewInit(){
 			bBack = true;
 		} else if (iGesture == "click") {
 			bClick = true;
+		}else if (iGesture == "carousel") {
+			bCarousel = true;
 		}
 
 		if (bLeft == true && iPosition > 0) {
@@ -136,6 +139,8 @@ ngAfterViewInit(){
           this.menuTabComponent.showCategoryList(iPos);
 
         }
+    }else if (bCarousel == true) {
+      window.location.href='/carousel';
     }
 }
   //-----------SignalR Methods -End-----------
