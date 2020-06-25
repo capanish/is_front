@@ -15,19 +15,20 @@ export class CategoryListComponent implements OnInit {
   @Input() iVal : any;
   @Input() cat : Category;
    selectedCatlist : any;
-   nutrionalInformation : NutriInfo;
+   nutritionalInformation : NutriInfo;
 
   constructor(private menuService : MenuService, private nutriInfoService : NutriInfoService,
     private categoryService : CategoryService) {
   }
 
   ngOnInit() {
-
    }
+
    ngAfterViewInit(){
     var elementC = document.getElementById('0');
     elementC.classList.add("active");
     this.showName(0);
+
   }
    showName(iVal){
      var eleId=document.getElementById(iVal).getAttribute('name');
@@ -44,15 +45,15 @@ export class CategoryListComponent implements OnInit {
       document.getElementById(eleId).style.display="none";
       document.getElementById(eleBGId).style.display="none";
     }
+    showNutritionalInfo=(iVal)=>{
+      //this.categoryService.showScreenE.emit('none');
+     // this.menuService.showScreenE.emit('none');
+      var eleId=document.getElementById(iVal).getAttribute('name');
+      this.nutritionalInformation=this.nutriInfoService.getNutritionalInfo(eleId);
+      this.categoryService.nutritionalInformationE.emit(this.nutritionalInformation);
+      //this.menuService.nutritionalInformationEM.emit(this.nutrionalInformation);
+    }
 
-  showNutritionalInfo(iVal){
-    //this.categoryService.showScreenE.emit('none');
-   // this.menuService.showScreenE.emit('none');
-    var eleId=document.getElementById(iVal).getAttribute('name');
-    this.nutrionalInformation=this.nutriInfoService.getNutritionalInfo(eleId);
-    this.categoryService.nutritionalInformationE.emit(this.nutrionalInformation);
-    //this.menuService.nutritionalInformationEM.emit(this.nutrionalInformation);
-  }
 
   navigateMenu = (iPosition, iCurrent) => {
     var elementC = document.getElementById(iCurrent);

@@ -63,7 +63,7 @@ export class MyListComponent implements OnInit {
   ngAfterViewInit(){
     var elementC = document.getElementById('nav0');
     elementC.classList.add("active");
-    //elementC.classList.add("selected");
+    elementC.classList.add("selected");
     var elementCk = document.getElementById('ck0');
     elementCk.classList.add("checkBoxAct");
 
@@ -179,7 +179,7 @@ export class MyListComponent implements OnInit {
   navigateMenuLeft(iPosition, iCurrent, iDirection) {
 
     document.getElementById('nav'+iCurrent).classList.remove("active");
-  //  document.getElementById('nav'+iCurrent).classList.remove("selected");
+    document.getElementById('nav'+iCurrent).classList.remove("selected");
     document.getElementById('ck'+iCurrent).classList.remove("checkBoxAct");
 
     document.getElementById('nav'+iPosition).classList.add("active");
@@ -200,11 +200,11 @@ export class MyListComponent implements OnInit {
   navigateMenuSwitch(iCurrent, iPos, iCurrentLeft) {
   if (iCurrent == 0) {
     document.getElementById('nav'+iCurrentLeft).classList.remove("active");
-   // document.getElementById('nav'+iCurrentLeft).classList.remove("selected");
+    document.getElementById('nav'+iCurrentLeft).classList.remove("selected");
     //document.getElementById('ck'+iCurrentLeft).classList.remove("checkBox");
     document.getElementById('ck'+iCurrentLeft).classList.remove("active");
     document.getElementById('nav'+iCurrentLeft).classList.add("inactive");
-    //document.getElementById('ck'+iCurrentLeft).classList.add("checkBoxAct");
+    document.getElementById('ck'+iCurrentLeft).classList.add("checkBoxActDis");
     document.getElementById('ck'+iCurrentLeft).classList.add("inactive");
     document.getElementsByClassName('myListItemDiv')[0].classList.add("inactive");
     document.getElementById('current').innerHTML="1";
@@ -216,7 +216,7 @@ export class MyListComponent implements OnInit {
     document.getElementById('nav'+iPos).classList.add("active");
     document.getElementById('ck'+iPos).classList.remove("inactive");
     document.getElementById('ck'+iPos).classList.add("active");
-   // document.getElementById('ck'+iPos).classList.remove("checkBoxAct");
+    document.getElementById('ck'+iPos).classList.remove("checkBoxActDis");
    // document.getElementById('ck'+iPos).classList.add("checkBox");
     document.getElementsByClassName('myListItemDiv')[0].classList.remove("inactive");
     document.getElementById('current').innerHTML="0";

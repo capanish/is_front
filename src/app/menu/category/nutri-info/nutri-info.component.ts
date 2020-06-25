@@ -113,8 +113,13 @@ export class NutriInfoComponent implements OnInit {
       var iPos = iCurrent + 1;
       this.nutriInfoButtonsComponent.navigateMenu(iPos, iPosition);
     } else if (bBack == true) {
-       // this.showScreen='categoryList';
+       this.showScreen='categoryList';
        this.menuService.showScreenE.emit('categoryList');
+      // this.menuService.showScreenE.emit('categoryList');
+
+      // this.route.navigate(['/home/categories']);
+      // this.categoryService.getCategoryList(2);
+
       // window.history.state.prevUrl;
 
       //this.route.navigate(["/menu/categories"]);

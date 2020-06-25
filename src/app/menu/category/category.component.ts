@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { MenuService } from "../../menu/menu.service";
 import { Category } from "./category.model";
 import { CategoryService } from "./category.service";
 import { CategoryListComponent } from "./category-list/category-list.component";
 import { ActivatedRoute } from "@angular/router";
 import * as signalR from "@microsoft/signalr";
+import { NutriInfo } from "../category/nutri-info/nutriInfo.model";
+import { NutriInfoService } from './nutri-info/nutriInfo.service';
 
 //-------SignalR-Starts------
 const data = { ready: false };
@@ -33,6 +35,10 @@ export class CategoryComponent implements OnInit {
   iMenuCount: number = 0;
   iColCount: number = 0;
   iRowCount: number = 0;
+
+
+
+
   //------SingnalR- variable declaration -Ends------
 
   constructor(
@@ -62,7 +68,7 @@ export class CategoryComponent implements OnInit {
       this.iMenuCount = resCount;
     });
 
-    //--------------SignalR Connection -Starts---------------
+     //--------------SignalR Connection -Starts---------------
 
     const connection = new signalR.HubConnectionBuilder()
       .withUrl(apiBaseUrl + "/signalr")
@@ -79,7 +85,7 @@ export class CategoryComponent implements OnInit {
     //--------------SignalR Connection -Ends---------------
   }
 
-  newMessage = (message) => {
+ newMessage = (message) => {
   if (this.showScreen === "categoryList") {
       this.iPosition = document.getElementById("current").innerHTML;
       this.iColCount = parseInt(document.getElementById("colnum").innerHTML);
@@ -131,6 +137,17 @@ export class CategoryComponent implements OnInit {
       var iPos = iCurrent + this.iColCount;
       this.categoryListComponent.navigateMenu(iPos, iPosition);
     } else if (bBack == true) {
+
+      this.menuService.showScreenE.subscribe((resImg) => {
+            this.showScreen = resImg;
+       });
+       console.log(this.showScreen);
+       if(this.showScreen =='categoryList'){
+        window.location.href='/home';
+       }
+
+
+
        //--------Added to highlight previously selected item---
 /*
       this.route.queryParamMap .subscribe(params => {
@@ -138,7 +155,7 @@ export class CategoryComponent implements OnInit {
        console.log("********cate************* "+this.sMenuId);
      });
       window.location.href='/home?id='+ this.sMenuId;*/
-      window.location.href='/home';
+
       //window.history.back();
 
       // this.showScreen='menu';
@@ -146,12 +163,16 @@ export class CategoryComponent implements OnInit {
      // this.location.back();
       // this.menuTabComponent.showCategoryList(iPos);
     } else if (bClick == true) {
+
       var iPos = iCurrent;
       this.categoryListComponent.showNutritionalInfo(iPos);
+   //   this.showNutritionalInfo(iPos);
       /*	var cHref = $('#anchor'+ iPos).attr("href");
 			window.location.href = cHref;*/
     } else if (bHome == true) {
       window.location.href = "/home";
     }
   };
+
+
 }

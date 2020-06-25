@@ -34,6 +34,12 @@
   color:grey;
  }
 
+ .itemName{
+  width: 90%;
+    text-align: left;
+    margin-top: 2%;
+}
+
 .checkBoxDiv{
   width: 10%;
 }
@@ -98,48 +104,25 @@
     background: white;
   }
 
-
-  .checkBox~.inactive::before{
-    border-color: grey;
+  .checkBoxActDis{
+    border: 1px solid  white;
    }
-  .checkBox~.inactive:checked {
-      background: white;
-  }
-  .checkBox~.inactive:checked::before {
+  .checkBoxActDis::before {
+      border-style: solid;
+      border-color: grey;
       opacity: 0;
+    }
+
+  .checkBoxActDis:checked {
+    border-color: white;
+    background: white;
   }
-  .checkBoxAct~.inactive::before{
-    border-color: grey;
-  }
-  .checkBoxAct~.inactive:checked {
-      background: white;
-  }
-  .checkBoxAct~.inactive:checked::before {
+  .checkBoxActDis:checked::before {
       opacity: 1;
   }
-/*
-  .checkBoxAct::before.inactive{
-    border-color: grey;
-  }*/
-  .checkBoxAct:checked~.inactiveAct {
-    border-color: grey;
-    background: grey;
-  }
-  /*
-  .checkBoxAct:checked::before.inactive {
-      opacity: 1;
-  }*/
-
-  .inactiveAct::before{
-    opacity: 1;
-    border-color: grey;
-  }
 
 
-.itemName{
-  width: 90%;
-    text-align: left;
-    margin-top: 2%;
-}
+
+
 
 
