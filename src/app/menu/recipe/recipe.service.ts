@@ -22,7 +22,6 @@ export class RecipeService implements OnInit {
      }
 
      getRecipeItems(){
-     //  this.menuService.showScreenE.emit(this.showScreen);
       this.recipeCountE.emit(this.recipeItems.length);
       this.showScreenE.emit('recipe');
        return this.recipeItems;

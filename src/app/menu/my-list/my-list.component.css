@@ -1,45 +1,45 @@
-.myListDiv{
+.myListDiv {
   background-size: cover;
-    background-position-x: center;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-    width: 99%;
-    padding-bottom: 10%;
-    padding-right: 0%;
-    height: 100%;
-    position: absolute;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  width: 99%;
+  padding-bottom: 10%;
+  padding-right: 0%;
+  height: 100%;
+  position: absolute;
 }
 
-.myListItemDiv{
+.myListItemDiv {
   width: 50%;
   padding-top: 5%;
   padding-left: 8%;
   color: black;
 }
 
-.myListItemDiv.inactive{
+.myListItemDiv.inactive {
   color: grey;
 }
-.myListBtns{
+.myListBtns {
   width: 100%;
 }
 
-.mTitleDiv{
+.mTitleDiv {
   font-weight: bolder;
   font-size: large;
   color: black;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   z-index: 9997;
   width: 49.38%;
   height: 10%;
   background: linear-gradient(to bottom, #e8eee8, transparent);
 }
 
-.mTitle{
+.mTitle {
   padding-top: 2%;
-    padding-left: 4%;
-    position: absolute;
-    font-size: x-large;
-    font-weight: bolder;
+  padding-left: 4%;
+  position: absolute;
+  font-size: x-large;
+  font-weight: bolder;
 }

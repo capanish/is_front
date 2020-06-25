@@ -46,12 +46,9 @@ export class CategoryListComponent implements OnInit {
       document.getElementById(eleBGId).style.display="none";
     }
     showNutritionalInfo=(iVal)=>{
-      //this.categoryService.showScreenE.emit('none');
-     // this.menuService.showScreenE.emit('none');
       var eleId=document.getElementById(iVal).getAttribute('name');
       this.nutritionalInformation=this.nutriInfoService.getNutritionalInfo(eleId);
       this.categoryService.nutritionalInformationE.emit(this.nutritionalInformation);
-      //this.menuService.nutritionalInformationEM.emit(this.nutrionalInformation);
     }
 
 

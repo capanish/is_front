@@ -1,52 +1,46 @@
-.recipeDiv{
+.recipeDiv {
   background-size: cover;
   background-position-x: center;
   background-position-y: center;
   background-repeat: no-repeat;
   z-index: -1;
-  /* width: 85%;
-  padding-bottom: 18%;
-  padding-right: 15%; */
   height: 100%;
-
-    width: 99%;
-    padding-bottom: 10%;
-    padding-right: 0%;
-    height: 100%;
-    position: absolute;
-
-
+  width: 99%;
+  padding-bottom: 10%;
+  padding-right: 0%;
+  height: 100%;
+  position: absolute;
 }
 
-.recipeItemDiv{
+.recipeItemDiv {
   width: 50%;
   padding-top: 5%;
   padding-left: 5%;
   color: black;
 }
 
-.recipeItemDiv.inactive{
+.recipeItemDiv.inactive {
   color: grey;
 }
-.recipeBtns{
+.recipeBtns {
   width: 100%;
 }
 
-.rTitleDiv{
+.rTitleDiv {
   font-weight: bolder;
   font-size: large;
   color: black;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   z-index: 9997;
   width: 49.38%;
   height: 10%;
   background: linear-gradient(to bottom, #e8eee8, transparent);
 }
 
-.rTitle{
+.rTitle {
   padding-top: 2%;
-    padding-left: 4%;
-    position: absolute;
-    font-size: x-large;
-    font-weight: bolder;
+  padding-left: 4%;
+  position: absolute;
+  font-size: x-large;
+  font-weight: bolder;
 }

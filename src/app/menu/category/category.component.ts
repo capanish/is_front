@@ -1,13 +1,12 @@
-import { Component, OnInit, ViewChild, Input } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MenuService } from "../../menu/menu.service";
 import { Category } from "./category.model";
 import { CategoryService } from "./category.service";
 import { CategoryListComponent } from "./category-list/category-list.component";
 import { ActivatedRoute } from "@angular/router";
 import * as signalR from "@microsoft/signalr";
-import { NutriInfo } from "../category/nutri-info/nutriInfo.model";
-import { NutriInfoService } from './nutri-info/nutriInfo.service';
-import { environment } from './../../../environments/environment';
+
+import { environment } from "./../../../environments/environment";
 
 //-------SignalR-Starts------
 const data = { ready: false };
@@ -24,8 +23,8 @@ export class CategoryComponent implements OnInit {
   menuImage: string;
   categoryList: Category[];
   showMenuImg: any = "true";
-  showScreen: string ='menu';
-  sMenuId : number;
+  showScreen: string = "menu";
+  sMenuId: number;
   //------SingnalR- variable declaration -Starts-----
   iPosition: any;
   @ViewChild(CategoryListComponent)
@@ -36,14 +35,11 @@ export class CategoryComponent implements OnInit {
   iRowCount: number = 0;
   apiBaseURL = environment.apiBaseUrl;
 
-
-
   //------SingnalR- variable declaration -Ends------
 
   constructor(
     private menuService: MenuService,
-    private categoryService: CategoryService,
-    private route: ActivatedRoute
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit() {
@@ -52,7 +48,7 @@ export class CategoryComponent implements OnInit {
     });
     this.menuService.menuNameSelected.subscribe((resName) => {
       this.menuName = resName;
-   });
+    });
     this.menuService.menuImageSelected.subscribe((resImgName) => {
       this.menuImage = resImgName;
     });
@@ -62,12 +58,12 @@ export class CategoryComponent implements OnInit {
     this.menuService.showScreenE.subscribe((resImg) => {
       this.showMenuImg = resImg;
       this.showScreen = resImg;
-     });
+    });
     this.categoryService.catCountE.subscribe((resCount) => {
       this.iMenuCount = resCount;
     });
 
-     //--------------SignalR Connection -Starts---------------
+    //--------------SignalR Connection -Starts---------------
 
     const connection = new signalR.HubConnectionBuilder()
       .withUrl(this.apiBaseURL + "signalr")
@@ -84,8 +80,8 @@ export class CategoryComponent implements OnInit {
     //--------------SignalR Connection -Ends---------------
   }
 
- newMessage = (message) => {
-  if (this.showScreen === "categoryList") {
+  newMessage = (message) => {
+    if (this.showScreen === "categoryList") {
       this.iPosition = document.getElementById("current").innerHTML;
       this.iColCount = parseInt(document.getElementById("colnum").innerHTML);
       this.iRowCount = this.iMenuCount / this.iColCount;
@@ -132,46 +128,19 @@ export class CategoryComponent implements OnInit {
     } else if (bUp == true && iPosition / this.iColCount >= 1) {
       var iPos = iCurrent - this.iColCount;
       this.categoryListComponent.navigateMenu(iPos, iPosition);
-    } else if (bDown == true && iPosition / this.iColCount < this.iRowCount - 1) {
+    } else if (
+      bDown == true &&
+      iPosition / this.iColCount < this.iRowCount - 1
+    ) {
       var iPos = iCurrent + this.iColCount;
       this.categoryListComponent.navigateMenu(iPos, iPosition);
     } else if (bBack == true) {
-
-      this.menuService.showScreenE.subscribe((resImg) => {
-            this.showScreen = resImg;
-       });
-       console.log(this.showScreen);
-       if(this.showScreen =='categoryList'){
-        window.location.href='/home';
-       }
-
-
-
-       //--------Added to highlight previously selected item---
-/*
-      this.route.queryParamMap .subscribe(params => {
-        this.sMenuId = +params.get('id')||0;
-       console.log("********cate************* "+this.sMenuId);
-     });
-      window.location.href='/home?id='+ this.sMenuId;*/
-
-      //window.history.back();
-
-      // this.showScreen='menu';
-      //console.log(this.showScreen);
-     // this.location.back();
-      // this.menuTabComponent.showCategoryList(iPos);
+      window.location.href = "/home";
     } else if (bClick == true) {
-
       var iPos = iCurrent;
       this.categoryListComponent.showNutritionalInfo(iPos);
-   //   this.showNutritionalInfo(iPos);
-      /*	var cHref = $('#anchor'+ iPos).attr("href");
-			window.location.href = cHref;*/
     } else if (bHome == true) {
       window.location.href = "/home";
     }
   };
-
-
 }

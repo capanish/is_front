@@ -1,11 +1,9 @@
-.sideNavBtn{
+.sideNavBtn {
   width: 45%;
   border-radius: 5px;
-  /* border-style: solid; */
   outline: 0;
-  /* border-color: white; */
   box-shadow: white;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: lighter;
   letter-spacing: 0;
   text-align: center;
@@ -16,24 +14,19 @@
   display: flex;
 }
 
-.sideNavBtn.active{
+.sideNavBtn.active {
   color: black;
-    background: white;
-    border: none;
-    font-size: large;
-    box-shadow: 0 0 10px;
- }
- .sideNavBtn.inactive{
-   color:white;
-   background-color: grey;
- }
+  background: white;
+  border: none;
+  font-size: large;
+  box-shadow: 0 0 10px;
+}
+.sideNavBtn.inactive {
+  color: white;
+  background-color: grey;
+}
 
- .selected{
+.selected {
   outline: 0;
-  /* box-shadow: 0 0 0 3px grey; */
-  color:grey;
- }
-
-
-
-
+  color: grey;
+}

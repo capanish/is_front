@@ -1,4 +1,4 @@
-.header{
+.header {
   position: absolute;
   width: 50%;
   height: 10%;
@@ -7,10 +7,10 @@
   background: linear-gradient(to bottom, #e8eee8, transparent);
   z-index: 9999;
 }
-.headerContent{
+.headerContent {
   position: relative;
   left: 50%;
   width: 37%;
   font-weight: bold;
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }

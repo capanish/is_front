@@ -1,13 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { NutriInfoService } from "./nutriInfo.service";
-import { CategoryService } from "../category.service";
 import { MenuService } from "../../menu.service";
 import { NutriInfo } from "./nutriInfo.model";
 import * as signalR from "@microsoft/signalr";
-import { Location } from "@angular/common";
 import { NutriInfoButtonsComponent } from "../nutri-info/nutri-info-buttons/nutri-info-buttons.component";
-import { Router } from "@angular/router";
-import { environment } from './../../../../environments/environment';
+import { environment } from "./../../../../environments/environment";
 //-------SignalR-Starts------
 const data = { ready: false };
 var iMenuCount: number = 5;
@@ -19,7 +16,6 @@ var iMenuCount: number = 5;
   styleUrls: ["./nutri-info.component.css"],
 })
 export class NutriInfoComponent implements OnInit {
-
   nutritionalInformation: NutriInfo;
   infoId: number;
   showScreen: string;
@@ -34,31 +30,14 @@ export class NutriInfoComponent implements OnInit {
 
   constructor(
     private nutriInfoService: NutriInfoService,
-    private categoryService: CategoryService,
-    private menuService: MenuService,
-    private location: Location,
-    private route: Router
+    private menuService: MenuService
   ) {}
 
   ngOnInit() {
     this.menuService.showScreenE.subscribe((resImgF) => {
       this.showScreen = resImgF;
     });
-   /* this.categoryService.showScreenE.subscribe((resImgF) => {
-      this.showScreen = resImgF;
-    });
 
-   this.nutriInfoService.showScreenE.subscribe(resImgF => {
-    console.log('resImgF : '+resImgF);
-    this.showScreen = resImgF;
-  });*/
-
-    /*this.menuService.nutritionalInformationEM.subscribe(resLst =>{
-      console.log(resLst);
-     this.nutritionalInformation=resLst;
-     //console.log(this.nutritionalInformation.id);
-   });
-*/
     this.nutriInfoService.nutritionalInfoE.subscribe((res) => {
       this.nutritionalInformation = res;
     });
@@ -80,7 +59,6 @@ export class NutriInfoComponent implements OnInit {
 
   //------------SignalR Methods -Start------------
   newMessage = (message) => {
-
     if (this.showScreen === "nutriInfo") {
       this.iPosition = document.getElementById("current").innerHTML;
       this.setPosition(message.text, iMenuCount, this.iPosition);
@@ -113,20 +91,10 @@ export class NutriInfoComponent implements OnInit {
       var iPos = iCurrent + 1;
       this.nutriInfoButtonsComponent.navigateMenu(iPos, iPosition);
     } else if (bBack == true) {
-       this.showScreen='categoryList';
-       this.menuService.showScreenE.emit('categoryList');
-      // this.menuService.showScreenE.emit('categoryList');
-
-      // this.route.navigate(['/home/categories']);
-      // this.categoryService.getCategoryList(2);
-
-      // window.history.state.prevUrl;
-
-      //this.route.navigate(["/menu/categories"]);
-      // this.location.back();
-      // this.showScreen='categoryList';
+      this.showScreen = "categoryList";
+      this.menuService.showScreenE.emit("categoryList");
     } else if (bClick == true) {
-       var iPos = iCurrent;
+      var iPos = iCurrent;
     } else if (bHome == true) {
       window.location.href = "/home";
     }

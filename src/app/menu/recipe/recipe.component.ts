@@ -4,8 +4,7 @@ import { RecipeService } from '../recipe/recipe.service';
 import * as signalR from '@microsoft/signalr';
 import { RecipeButtonsComponent } from '../recipe/recipe-buttons/recipe-buttons.component';
 import { MenuService } from '../menu.service';
-import { Location } from '@angular/common';
-import { Router,ActivatedRoute} from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { environment} from './../../../environments/environment';
 
  //-------SignalR-Starts------
@@ -62,17 +61,15 @@ export class RecipeComponent implements OnInit {
   ngAfterViewInit(){
     var elementC = document.getElementById('nav0');
     elementC.classList.add("active");
-  //  elementC.classList.add("selected");
+
 
   }
  //------------SignalR Methods -Start------------
  newMessage = (message) => {
- // if(this.showScreen ==='recipe'){
-    var iPosition=document.getElementById('current').innerHTML;
+     var iPosition=document.getElementById('current').innerHTML;
     var iPositionLeft = document.getElementById('leftcurrent').innerHTML;
 		var iPositionRight = document.getElementById('rightcurrent').innerHTML;
     this.setPosition(message.text,  iPosition, iPositionLeft, iPositionRight);
- // }
  }
 
 setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
@@ -117,16 +114,7 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
       this.navigateMenuLeft(iPos, iCurrentLeft, 1);
 
     } else if (bBack == true) {
-         //--------Added to highlight previously selected item---
-   /*   this.route.queryParamMap .subscribe(params => {
-        this.sMenuId = +params.get('id')||0;
-       console.log("********my list************* "+this.sMenuId);
-     });
-      window.location.href='/home?id='+ this.sMenuId;*/
-      window.location.href='/home';
-     // window.history.go(-1);
-    // this.location.back();
-     //this.route.navigate(['/home']);
+        window.location.href='/home';
     } else if (bClick == true) {
       var iPos = iCurrentLeft;
       this.imageName=this.recipes[iPos].image;
@@ -145,24 +133,12 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
 
     }
     if (bRight == true && iCurrentRight < (iItemCount-1)) {
-
       var iPos = iCurrentRight+1;
-
       this.navigateMenuRight(iPos, iCurrentRight, 0);
-
     } else if (bBack == true) {
-       //--------Added to highlight previously selected item---
-    /*  this.route.queryParamMap .subscribe(params => {
-        this.sMenuId = +params.get('id')||0;
-       console.log("********my list************* "+this.sMenuId);
-     });
-      window.location.href='/home?id='+ this.sMenuId;*/
-
-      window.location.href='/home';
+       window.location.href='/home';
     } else if (bClick == true) {
 
-      var iPos = iCurrent;
-      this.imageName=this.recipes[iPos].image;
      }
      else if (bHome == true) {
       window.location.href = "/home";
@@ -174,7 +150,6 @@ setPosition =(iGesture, iPosition, iPositionLeft, iPositionRight) =>{
 navigateMenuLeft(iPosition, iCurrent, iDirection) {
 
   document.getElementById('nav'+iCurrent).classList.remove("active");
-//  document.getElementById('nav'+iCurrent).classList.remove("selected");
   document.getElementById('nav'+iPosition).classList.add("active");
   document.getElementById('current').innerHTML="0";
   document.getElementById('leftcurrent').innerHTML=iPosition;
@@ -191,7 +166,6 @@ navigateMenuLeft(iPosition, iCurrent, iDirection) {
 navigateMenuSwitch(iCurrent, iPos, iCurrentLeft) {
   if (iCurrent == 0) {
     document.getElementById('nav'+iCurrentLeft).classList.remove("active");
-  //  document.getElementById('nav'+iCurrentLeft).classList.remove("selected");
     document.getElementById('nav'+iCurrentLeft).classList.add("inactive");
     document.getElementsByClassName('recipeItemDiv')[0].classList.add("inactive");
     document.getElementById('current').innerHTML="1";

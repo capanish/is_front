@@ -1,11 +1,9 @@
-.sideNavBtn{
+.sideNavBtn {
   width: 45%;
   border-radius: 5px;
-  /* border-style: solid; */
   outline: 0;
-  /* border-color: white; */
   box-shadow: white;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: lighter;
   letter-spacing: 0;
   text-align: center;
@@ -16,113 +14,105 @@
   display: flex;
 }
 
-.sideNavBtn.active{
+.sideNavBtn.active {
   color: black;
-    background: white;
-    border: none;
-    font-size: large;
-    box-shadow: 0 0 10px;
- }
- .sideNavBtn.inactive{
-   color:white;
-   background-color: grey;
- }
-
- .selected{
-  outline: 0;
-  /* box-shadow: 0 0 0 3px grey; */
-  color:grey;
- }
-
- .itemName{
-  width: 90%;
-    text-align: left;
-    margin-top: 2%;
+  background: white;
+  border: none;
+  font-size: large;
+  box-shadow: 0 0 10px;
+}
+.sideNavBtn.inactive {
+  color: white;
+  background-color: grey;
 }
 
-.checkBoxDiv{
+.selected {
+  outline: 0;
+  color: grey;
+}
+
+.itemName {
+  width: 90%;
+  text-align: left;
+  margin-top: 2%;
+}
+
+.checkBoxDiv {
   width: 10%;
 }
 
-.checkBox{
+.checkBox {
   position: relative;
   width: 1.5em;
   height: 1.5em;
-  border: 1px solid  gray;
+  border: 1px solid gray;
   border-radius: 4px;
   cursor: pointer;
   appearance: none;
   outline: 0;
   transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
 }
-  .checkBox::before {
-    position: absolute;
-    content: '';
-    display: block;
-    left: 5px;
-    width: 6px;
-    height: 14px;
-    border-style: solid;
-    border-color: white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    opacity: 0;
-  }
-  .checkBox:checked {
-    border-color: grey;
-    background: grey;
-  }
-  .checkBox:checked::before {
-      opacity: 1;
-  }
+.checkBox::before {
+  position: absolute;
+  content: "";
+  display: block;
+  left: 5px;
+  width: 6px;
+  height: 14px;
+  border-style: solid;
+  border-color: white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+.checkBox:checked {
+  border-color: grey;
+  background: grey;
+}
+.checkBox:checked::before {
+  opacity: 1;
+}
 
-  /* Active */
-  .checkBoxAct{
-    border: 1px solid  grey;
-   }
-  .checkBoxAct::before {
-      border-style: solid;
-      border-color: white;
-      opacity: 0;
-    }
+/* Active */
+.checkBoxAct {
+  border: 1px solid grey;
+}
+.checkBoxAct::before {
+  border-style: solid;
+  border-color: white;
+  opacity: 0;
+}
 
-  .checkBoxAct:checked {
-    border-color: grey;
-    background: grey;
-  }
-  .checkBoxAct:checked::before {
-      opacity: 1;
-  }
+.checkBoxAct:checked {
+  border-color: grey;
+  background: grey;
+}
+.checkBoxAct:checked::before {
+  opacity: 1;
+}
 
+/* Disable */
+.checkBox.inactive {
+  background: white;
+}
 
-  /* Disable */
-  .checkBox.inactive{
-    background: white;
-   }
+.checkBoxAct.inactive {
+  background: white;
+}
 
-  .checkBoxAct.inactive{
-    background: white;
-  }
+.checkBoxActDis {
+  border: 1px solid white;
+}
+.checkBoxActDis::before {
+  border-style: solid;
+  border-color: grey;
+  opacity: 0;
+}
 
-  .checkBoxActDis{
-    border: 1px solid  white;
-   }
-  .checkBoxActDis::before {
-      border-style: solid;
-      border-color: grey;
-      opacity: 0;
-    }
-
-  .checkBoxActDis:checked {
-    border-color: white;
-    background: white;
-  }
-  .checkBoxActDis:checked::before {
-      opacity: 1;
-  }
-
-
-
-
-
-
+.checkBoxActDis:checked {
+  border-color: white;
+  background: white;
+}
+.checkBoxActDis:checked::before {
+  opacity: 1;
+}

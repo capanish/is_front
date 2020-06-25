@@ -1,58 +1,57 @@
-.buttonLstDiv{
-position : absolute;
-top: 45%;
-left: 5%;
-z-index: 9999;
-margin: 0 auto;
-width: 80%;
-height: 50%;
-display: flex;
+.buttonLstDiv {
+  position: absolute;
+  top: 45%;
+  left: 5%;
+  z-index: 9999;
+  margin: 0 auto;
+  width: 80%;
+  height: 50%;
+  display: flex;
 }
 
-.buttonDiv{
+.buttonDiv {
   width: 10%;
   height: 25%;
-  }
-
-.lbl{
-    position: relative;
-    top: 10%;
-    left: 8%;
-    font-weight: normal;
-    font-size: small;
-    font-family: 'Roboto';
 }
 
-.lbl.active{
- font-weight: bold;
+.lbl {
+  position: relative;
+  top: 10%;
+  left: 8%;
+  font-weight: normal;
+  font-size: small;
+  font-family: "Roboto";
+}
+
+.lbl.active {
+  font-weight: bold;
 }
 .centerButtons {
-    box-sizing: border-box;
-    margin: 0 auto;
-    width: 90%;
-    border-radius: 5px;
-    background: rgba(71, 67, 67, 0.5);
-    border-color: transparent;
-    margin-right: 1%;
-    margin-top: 2%;
-    height: 56%;
-    background-repeat: no-repeat;
-    position: relative;
-    background-position-y: center;
-    background-position-x: center;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 90%;
+  border-radius: 5px;
+  background: rgba(71, 67, 67, 0.5);
+  border-color: transparent;
+  margin-right: 1%;
+  margin-top: 2%;
+  height: 56%;
+  background-repeat: no-repeat;
+  position: relative;
+  background-position-y: center;
+  background-position-x: center;
+}
 
-  }
-
-  .centerButtons.active{
-    line-height: 10%;
-    background: #fff;
-    color: #000;
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: center;
-  }
- .btnText{
+.centerButtons.active {
+  line-height: 10%;
+  background: #fff;
+  color: #000;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+.btnText {
   vertical-align: top;
   font-weight: bolder;
   color: white;
- }
+}

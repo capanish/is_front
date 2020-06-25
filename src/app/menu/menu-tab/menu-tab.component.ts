@@ -1,98 +1,93 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter,NgModule } from '@angular/core';
-import { Menu } from './../menu.model'
-import { MenuService } from './../menu.service';
-import { CategoryService } from '../category/category.service';
-import { FormsModule } from '@angular/forms';
-import { RecipeService } from '../recipe/recipe.service';
-import { ActivatedRoute } from '@angular/router';
-
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  Output,
+  EventEmitter,
+  NgModule,
+} from "@angular/core";
+import { Menu } from "./../menu.model";
+import { MenuService } from "./../menu.service";
+import { CategoryService } from "../category/category.service";
+import { FormsModule } from "@angular/forms";
+import { RecipeService } from "../recipe/recipe.service";
+import { ActivatedRoute } from "@angular/router";
 
 @NgModule({
-  imports: [
-       FormsModule
-  ]
+  imports: [FormsModule],
 })
-
 @Component({
-  selector: 'app-menu-tab',
-  templateUrl: './menu-tab.component.html',
-  styleUrls: ['./menu-tab.component.css']
+  selector: "app-menu-tab",
+  templateUrl: "./menu-tab.component.html",
+  styleUrls: ["./menu-tab.component.css"],
 })
-
-export class MenuTabComponent implements OnInit,OnChanges {
+export class MenuTabComponent implements OnInit, OnChanges {
   @Output() menuItem = new EventEmitter();
   @Input() menu: Menu;
-  @Input() iVal : any;
-  categoryItemsList: any=[];
-  selectedElementId : any;
-  constructor(private menuService: MenuService, private categoryService : CategoryService,
-    private recipeService : RecipeService,private route: ActivatedRoute) { }
+  @Input() iVal: any;
+  categoryItemsList: any = [];
+  selectedElementId: any;
+  constructor(
+    private menuService: MenuService,
+    private categoryService: CategoryService,
+    private recipeService: RecipeService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-      //Set background image for selected menu item
-       this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
-        //--------Added to highlight previously selected item---
-      /* this.route.queryParamMap .subscribe(params => {
-        this.selectedElementId = +params.get('id')||0;
-        console.log("********Tab*on************ "+this.selectedElementId);
-      });*/
-    }
-
-      ngAfterViewInit(){
-         //--------Added to highlight previously selected item---
-        /*
-          this.route.queryParamMap .subscribe(params => {
-          this.selectedElementId = +params.get('id')||0;
-          console.log("********Tab************* "+this.selectedElementId);
-        });
-           console.log('menu selected  : '+this.selectedElementId);
-       var elementC = document.getElementById(this.selectedElementId);*/
-
-        var elementC = document.getElementById('0');
-        elementC.classList.add("active");
-        elementC.classList.add("selected");
-      }
-
-  ngOnChanges(){
-        this.menuItem.emit(this.menu);
+    //Set background image for selected menu item
+    this.menuService.menuSelected.emit(this.menuService.menuItems[0].image);
   }
-  changeBackgroundImage(iVal){
-      //this.menuService.menuSelected.emit(this.menu.image);
-      this.menuService.menuSelected.emit(this.menuService.menuItems[iVal].image);
-      this.menuService.showScreenE.emit('menu');
-     //this.categoryService.showScreenE.emit('menu');
 
-    }
+  ngAfterViewInit() {
+    var elementC = document.getElementById("0");
+    elementC.classList.add("active");
+    elementC.classList.add("selected");
+  }
 
- showCategoryList=(iVal) =>{
-  //Set menu id for selected menu item
-  var elementId=document.getElementById(iVal).getAttribute('name');
-  this.menuService.menuIdSelected.emit(parseInt(elementId));
-  this.menuService.menuNameSelected.emit(this.menuService.menuItems[iVal].menuName);
-  this.menuService.menuImageSelected.emit(this.menuService.menuItems[iVal].image);
-  this.categoryItemsList=this.categoryService.getCategoryList(parseInt(elementId));
-  this.menuService.selectedCategoryList.emit(this.categoryItemsList);
-}
+  ngOnChanges() {
+    this.menuItem.emit(this.menu);
+  }
+  changeBackgroundImage(iVal) {
+    this.menuService.menuSelected.emit(this.menuService.menuItems[iVal].image);
+    this.menuService.showScreenE.emit("menu");
+  }
 
-showRecipe=() =>{
-  this.recipeService.getRecipeItems();
-}
+  showCategoryList = (iVal) => {
+    //Set menu id for selected menu item
+    var elementId = document.getElementById(iVal).getAttribute("name");
+    this.menuService.menuIdSelected.emit(parseInt(elementId));
+    this.menuService.menuNameSelected.emit(
+      this.menuService.menuItems[iVal].menuName
+    );
+    this.menuService.menuImageSelected.emit(
+      this.menuService.menuItems[iVal].image
+    );
+    this.categoryItemsList = this.categoryService.getCategoryList(
+      parseInt(elementId)
+    );
+    this.menuService.selectedCategoryList.emit(this.categoryItemsList);
+  };
 
-showMenuName=(iVal) =>{
-  this.menuService.menuNameSelected.emit(this.menuService.menuItems[iVal].menuName);
-}
+  showRecipe = () => {
+    this.recipeService.getRecipeItems();
+  };
 
- navigateMenu = (iPosition, iCurrent) => {
-  var elementC = document.getElementById(iCurrent);
-  var elementP =document.getElementById(iPosition);
-  elementC.classList.remove("active");
-  elementC.classList.remove("selected");
-  elementP.classList.add("active");
-  elementP.classList.add("selected");
-  this.changeBackgroundImage(iPosition);
-  document.getElementById('current').innerHTML=iPosition;
+  showMenuName = (iVal) => {
+    this.menuService.menuNameSelected.emit(
+      this.menuService.menuItems[iVal].menuName
+    );
+  };
 
-}
-
-
+  navigateMenu = (iPosition, iCurrent) => {
+    var elementC = document.getElementById(iCurrent);
+    var elementP = document.getElementById(iPosition);
+    elementC.classList.remove("active");
+    elementC.classList.remove("selected");
+    elementP.classList.add("active");
+    elementP.classList.add("selected");
+    this.changeBackgroundImage(iPosition);
+    document.getElementById("current").innerHTML = iPosition;
+  };
 }

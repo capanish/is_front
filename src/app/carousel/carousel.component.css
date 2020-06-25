@@ -1,26 +1,40 @@
-.header{
+.header {
   position: absolute;
-    width: 50%;
-    left: 47%;
-    height: 10%;
-    z-index: 9999;
+  width: 110%;
+  height: 10%;
+  z-index: 9999;
+  display: flex;
+  background: linear-gradient(to bottom, #e8eee8, transparent);
 }
-.headerContent{
+.headerContent {
   position: relative;
-    left: 75%;
-    width: 37%;
-    font-weight: bold;
-    font-size: large;
-    font-family: 'Roboto';
+  top: 22%;
+  left: 70%;
+  width: 10%;
+  font-weight: bold;
+  font-size: large;
+  font-family: "Roboto";
 }
-.imgHeadContent{
+.imgHead{
+  position: relative;
+  z-index: 9999;
+  top: 12%;
+ }
+
+.imgHeadContent {
   position: absolute;
-    z-index: 9999;
-    font-size: large;
-    font-weight: bold;
-    font-family: 'Roboto';
-    top: 2%;
-    left: 4%;
+  z-index: 9999;
+  font-size: large;
+  font-weight: bold;
+  font-family: "Roboto";
+  height: 7.6%;
+  width: 49.37%;
+  background: linear-gradient(to bottom, #e8eee8, transparent);
+}
+.titleSpan {
+  top: 24%;
+  position: relative;
+  left: 10%;
 }
 .carouselMainDiv {
   position: absolute;
@@ -33,8 +47,11 @@
   display: none;
 }
 
-.carImg{
+.carImg {
   position: relative;
+  width: 110%;
+}
+.carImgDiv {
   width: 100%;
 }
 
@@ -46,18 +63,33 @@
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.slide{
-  position:relative;
-  animation:slide 0.4s
+.slide {
+  position: relative;
+  animation: slide 0.4s;
 }
-@keyframes slide{
-  from{left:-300px;opacity:0}
-  to{left:0;opacity:1}}
+@keyframes slide {
+  from {
+    left: -300px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}

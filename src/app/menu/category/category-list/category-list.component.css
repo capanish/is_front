@@ -1,47 +1,49 @@
-.catLstDiv{
-    position: relative;
- }
-.catLstImg{
-    border-radius: 8px;
-    border-style: solid;
-    outline: 0;
-    color: white;
-    border-color: white;
-    box-shadow: white;
-    height :140px;
-    width : 300px;
+.catLstDiv {
+  position: relative;
+}
+.catLstImg {
+  border-radius: 8px;
+  border-style: solid;
+  outline: 0;
+  color: white;
+  border-color: white;
+  box-shadow: white;
+  height: 140px;
+  width: 300px;
 }
 
 .catLstImg.active {
-    outline: 0;
-    vertical-align: middle;
-    line-height: 10%;
-    border-radius: 8px;
-    height: 155px;
-    background-image: linear-gradient(to bottom, transparent 0%, white 100%);
-
+  outline: 0;
+  vertical-align: middle;
+  line-height: 10%;
+  border-radius: 8px;
+  height: 159px;
+  width: 302px;
+  border-style: none;
+  background-image: linear-gradient(to bottom, transparent 0%, white 100%);
 }
 
-.catLstImgName{
-    display: none;
-    position: absolute;
-    top: 40%;
-    padding-left: 37%;
-    z-index: 99999;
-    margin: 0 auto;
-    font-weight: bold;
-    font-size: x-large;
-    color : black;
-    font-family: 'Roboto';
+.catLstImgName {
+  display: none;
+  position: absolute;
+  top: 40%;
+  padding-left: 37%;
+  z-index: 99999;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: x-large;
+  color: black;
+  font-family: "Roboto";
 }
 
-.catLstImgNBG{
-    display: none;
-    position: absolute;
-    background-color: white;
-    opacity: 0.7;
-    z-index: 9999;
-    height: 159px;
-    width: 302px;
-    border-radius: 8px;
+.catLstImgNBG {
+  display: none;
+  position: absolute;
+  background-color: white;
+  opacity: 0.7;
+  z-index: 9999;
+  height: 159px;
+  width: 302px;
+  border-radius: 8px;
+  box-shadow: 0 0 17px darkslategrey;
 }

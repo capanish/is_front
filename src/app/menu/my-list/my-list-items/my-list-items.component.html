@@ -1,13 +1,9 @@
 <div class="sideNavBtn" id="nav{{item.id}}">
-<div class="itemName"> {{item.itemName}}</div>
- <div  *ngIf="item.active" class="checkBoxDiv">
-  <input type="checkbox" checked="checked" class="checkBox" id="ck{{item.id}}">
- </div>
- <div *ngIf="item.active!=1" class="checkBoxDiv">
-  <input type="checkbox"  class="checkBox" id="ck{{item.id}}">
- </div>
+  <div class="itemName"> {{item.itemName}}</div>
+  <div *ngIf="item.active" class="checkBoxDiv">
+    <input type="checkbox" checked="checked" class="checkBox" id="ck{{item.id}}">
+  </div>
+  <div *ngIf="item.active!=1" class="checkBoxDiv">
+    <input type="checkbox" class="checkBox" id="ck{{item.id}}">
+  </div>
 </div>
-
-
-
-

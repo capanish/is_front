@@ -6,8 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Category } from './category/category.model';
 import { MenuTabComponent } from '../menu/menu-tab/menu-tab.component';
 import * as signalR from '@microsoft/signalr';
-import { Router,ActivatedRoute} from '@angular/router';
-import { MyListService } from './my-list/my-list.service';
+import { Router} from '@angular/router';
 import { environment} from './../../environments/environment';
 
  //-------SignalR-Starts------
@@ -48,7 +47,7 @@ export class MenuComponent implements OnInit {
 //------SingnalR- variable declaration -Ends------
 
 constructor(private http: HttpClient, private menuService: MenuService,
-  private router: Router, private route: ActivatedRoute, private myListService : MyListService) { }
+  private router: Router) { }
 
  getMenuObj(menuItem){
     this.bgImgObj=menuItem.image;
@@ -57,21 +56,11 @@ constructor(private http: HttpClient, private menuService: MenuService,
  }
 
  ngOnInit() {
-   //--------Added to highlight previously selected item---
-  /*this.route.queryParamMap
-       .subscribe(params => {
-     this.sMenuId = +params.get('id')||0;
-   });*/
 
   this.menuItems = this.menuService.getMenuItems();
   this.menuService.menuCountE.subscribe(resCount =>{
     iMenuCount=resCount;
    });
-
-   /*
-   this.categoryService.showScreenE.subscribe(resImgF =>{
-    this.showScreen= resImgF;
-   });*/
 
    this.menuService.showScreenE.subscribe(resImgF =>{
     this.showScreen= resImgF;
@@ -128,26 +117,20 @@ ngAfterViewInit(){
         var iPos = iCurrent+1;
       	this.menuTabComponent.navigateMenu(iPos, iPosition);
 		} else if (bBack == true) {
-    //	window.history.back();
 
 		} else if (bClick == true) {
       var iPos = iCurrent;
       this.sMenuId=iCurrent;
 
        if(iPos==0){
-          //this.router.navigate(['/home/myList'],{queryParams:{ id:  this.sMenuId }});
-          //this.router.navigate(['/home/myList']);
           this.router.navigate(['/home/myList'],{queryParams:{tab: iPos}});
           this.menuService.showScreenE.emit("myList");
 
         }else if(iPos==1){
-         //this.router.navigate(['/home/recipe'],{queryParams:{ id:  this.sMenuId }});
-         //this.router.navigate(['/home/recipe']);
          this.router.navigate(['/home/recipe'],{queryParams:{tab: iPos}});
          this.menuService.showScreenE.emit("recipe");
 
         }else{
-          //this.router.navigate(['/home/categories'],{queryParams:{ id:  this.sMenuId }});
           this.router.navigate(['/home/categories']);
           this.menuService.showScreenE.emit("categoryList");
           this.menuTabComponent.showCategoryList(iPos);

@@ -37,20 +37,17 @@ export class MyListButtonsComponent implements OnInit {
     elementP.classList.add("active");
     elementLP.classList.add("active");
     this.btnImage[iPosition]=this.btnImageActive[iPosition];
-    console.log('iPosition :'+iPosition+' this.btnImageActive[iPosition]  :'+this.btnImageActive[iPosition]);
-   }
+  }
 
   addRemoveButtonState(state){
     var elementB = document.getElementById('0');
     var elementL = document.getElementById('lbl0');
-    if(state==='active'){
+    if(state =='active'){
       elementB.classList.add("active");
-     // elementB.classList.add("selected");
       elementL.classList.add("active");
       this.btnImage[0]=this.btnImageActive[0];
   }else{
     elementB.classList.remove("active");
-   // elementB.classList.remove("selected");
     elementL.classList.remove("active");
     this.btnImage[0]=this.btnImageInActive[0];
   }

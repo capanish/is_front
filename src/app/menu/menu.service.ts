@@ -23,7 +23,6 @@ export class MenuService implements OnInit {
 
     getMenuItems(){
      var menuLoop: Menu[] = [];
-     //'http://localhost:8081/apiInteractiveRetailStore/v1/menus'
      this.http.get(this.apiBaseURL+'menus')
      .subscribe(menu => {
                this.menuItems=menu;
@@ -37,8 +36,6 @@ export class MenuService implements OnInit {
             this.menuCountE.emit(this.menuCount);
          }
        );
-
-
          this.menuItems = menuLoop;
          return this.menuItems;
  }
