@@ -3,7 +3,7 @@ import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { CategoryService } from '../../category/category.service';
 import { MenuService } from '../../menu.service';
-
+import { environment } from './../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class NutriInfoService implements OnInit {
@@ -11,6 +11,7 @@ export class NutriInfoService implements OnInit {
     public nutriInfo: NutriInfo;
     nutritionalInfoE = new EventEmitter();
     showScreenE =  new EventEmitter();
+    apiBaseURL = environment.apiBaseUrl;
     constructor(private http:HttpClient , private categoryService : CategoryService,
         private menuService : MenuService){
 
@@ -18,7 +19,8 @@ export class NutriInfoService implements OnInit {
 
     getNutritionalInfo(subMenuId){
       //  var nutriInfV: NutriInfo[] = [];
-        this.http.get<NutriInfo>('http://localhost:8081/apiInteractiveRetailStore/v1/nutriInfo/submenu/'+subMenuId)
+      //http://localhost:8081/apiInteractiveRetailStore/v1/nutriInfo/submenu/
+        this.http.get<NutriInfo>(this.apiBaseURL+'nutriInfo/submenu/'+subMenuId)
             .subscribe(nutriInfR => {
                   this.nutriInfo=nutriInfR;
                   this.nutritionalInfoE.emit(this.nutriInfo);

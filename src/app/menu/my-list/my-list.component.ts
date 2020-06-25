@@ -6,11 +6,10 @@ import * as signalR from '@microsoft/signalr';
 import { MyListButtonsComponent} from '../my-list/my-list-buttons/my-list-buttons.component';
 import { Router,ActivatedRoute } from '@angular/router';
 import { MenuService } from '../menu.service';
-
+import { environment } from './../../../environments/environment';
 
  //-------SignalR-Starts------
  const data = { ready : false};
- const apiBaseUrl = 'http://localhost:8081/apiInteractiveRetailStore/v1';
  var iMenuCount:number  = 0;
  var iItemCount:number  = 5;
  //-------SignalR-Ends-------
@@ -32,6 +31,7 @@ export class MyListComponent implements OnInit {
 
    //------SingnalR- variable declaration -Starts-----
    @ViewChild  (MyListButtonsComponent) myListButtonsComponent: MyListButtonsComponent;
+   apiBaseURL=environment.apiBaseUrl;
  //------SingnalR- variable declaration -Ends------
 
   constructor(private myListService: MyListService, private route: ActivatedRoute,
@@ -48,7 +48,7 @@ export class MyListComponent implements OnInit {
     this.menuName=this.menuService.menuItems[this.menuPos].menuName;
      //--------------SignalR Connection -Starts---------------
   const connection = new signalR.HubConnectionBuilder()
-  .withUrl(apiBaseUrl+'/signalr')
+  .withUrl(this.apiBaseURL+'signalr')
   .withAutomaticReconnect()
   .configureLogging(signalR.LogLevel.Information)
   .build();

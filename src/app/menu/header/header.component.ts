@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {formatDate , DatePipe} from '@angular/common';
-import { MenuService } from '../menu.service';
+import { Component, OnInit } from '@angular/core';
+import { environment } from './../../../environments/environment';
+
 
 @Component({
   selector: 'app-header',
@@ -9,10 +9,9 @@ import { MenuService } from '../menu.service';
 })
 export class HeaderComponent implements OnInit {
 
- // @Input() dateTime: any;
+
   today= new Date();
-  // todayNumber: number = Date.now();
-  // todayDate : Date = new Date();
+  nickname= environment.nickname;
   constructor() { }
 
   ngOnInit() {

@@ -7,10 +7,9 @@ import * as signalR from "@microsoft/signalr";
 import { Location } from "@angular/common";
 import { NutriInfoButtonsComponent } from "../nutri-info/nutri-info-buttons/nutri-info-buttons.component";
 import { Router } from "@angular/router";
-
+import { environment } from './../../../../environments/environment';
 //-------SignalR-Starts------
 const data = { ready: false };
-const apiBaseUrl = "http://localhost:8081/apiInteractiveRetailStore/v1";
 var iMenuCount: number = 5;
 //-------SignalR-Ends-------
 
@@ -30,6 +29,7 @@ export class NutriInfoComponent implements OnInit {
   iPosition: any;
   @ViewChild(NutriInfoButtonsComponent)
   nutriInfoButtonsComponent: NutriInfoButtonsComponent;
+  apiBaseURL = environment.apiBaseUrl;
   //------SingnalR- variable declaration -Ends------
 
   constructor(
@@ -65,7 +65,7 @@ export class NutriInfoComponent implements OnInit {
 
     //--------------SignalR Connection -Starts---------------
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl(apiBaseUrl + "/signalr")
+      .withUrl(this.apiBaseURL + "signalr")
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Information)
       .build();

@@ -7,11 +7,10 @@ import { ActivatedRoute } from "@angular/router";
 import * as signalR from "@microsoft/signalr";
 import { NutriInfo } from "../category/nutri-info/nutriInfo.model";
 import { NutriInfoService } from './nutri-info/nutriInfo.service';
+import { environment } from './../../../environments/environment';
 
 //-------SignalR-Starts------
 const data = { ready: false };
-const apiBaseUrl = "http://localhost:8081/apiInteractiveRetailStore/v1";
-
 //-------SignalR-Ends------
 
 @Component({
@@ -35,7 +34,7 @@ export class CategoryComponent implements OnInit {
   iMenuCount: number = 0;
   iColCount: number = 0;
   iRowCount: number = 0;
-
+  apiBaseURL = environment.apiBaseUrl;
 
 
 
@@ -71,7 +70,7 @@ export class CategoryComponent implements OnInit {
      //--------------SignalR Connection -Starts---------------
 
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl(apiBaseUrl + "/signalr")
+      .withUrl(this.apiBaseURL + "signalr")
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Information)
       .build();

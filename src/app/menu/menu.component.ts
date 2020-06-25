@@ -5,16 +5,14 @@ import {Menu} from './menu.model';
 import { FormsModule } from '@angular/forms';
 import { Category } from './category/category.model';
 import { MenuTabComponent } from '../menu/menu-tab/menu-tab.component';
-//import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
 import { Router,ActivatedRoute} from '@angular/router';
 import { MyListService } from './my-list/my-list.service';
-
+import { environment} from './../../environments/environment';
 
  //-------SignalR-Starts------
  const data = { ready : false};
- const apiBaseUrl = 'http://localhost:8081/apiInteractiveRetailStore/v1';
- var iMenuCount:number  = 0;
+  var iMenuCount:number  = 0;
  //-------SignalR-Ends-------
 
 @NgModule({
@@ -41,10 +39,12 @@ export class MenuComponent implements OnInit {
   showScreen :string ='menu';
   sMenuId :any;
 
+
+
   //------SingnalR- variable declaration -Starts-----
   iPosition : any;
   @ViewChild  (MenuTabComponent) menuTabComponent: MenuTabComponent;
-
+  apiBaseURL=environment.apiBaseUrl;
 //------SingnalR- variable declaration -Ends------
 
 constructor(private http: HttpClient, private menuService: MenuService,
@@ -79,7 +79,7 @@ constructor(private http: HttpClient, private menuService: MenuService,
 
  //--------------SignalR Connection -Starts---------------
   const connection = new signalR.HubConnectionBuilder()
-  .withUrl(apiBaseUrl+'/signalr')
+  .withUrl(this.apiBaseURL+'signalr')
   .withAutomaticReconnect()
   .configureLogging(signalR.LogLevel.Information)
   .build();

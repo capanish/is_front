@@ -3,7 +3,7 @@ import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Menu } from '../../menu/menu.model';
 import { MenuService } from '../menu.service';
-
+import { environment } from './../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryService implements OnInit {
@@ -14,13 +14,15 @@ export class CategoryService implements OnInit {
     nutritionalInformationE = new EventEmitter();
     catCountE = new EventEmitter();
     public catCount:number =0;
-
+    apiBaseURL = environment.apiBaseUrl;
     constructor(private http:HttpClient, private menuService : MenuService){  }
 
     getCategoryList(menuId){
      var categoryLoop: Category[] = [];
      this.catShowScreen ='menu';
-     this.http.get('http://localhost:8081/apiInteractiveRetailStore/v1/categoryList/menu/'+menuId)
+
+     //'http://localhost:8081/apiInteractiveRetailStore/v1/categoryList/menu/
+     this.http.get(this.apiBaseURL+'categoryList/menu/'+menuId)
      .subscribe(category => {
                 this.categoryItems=category;
                 for(let res1 of this.categoryItems){

@@ -6,11 +6,10 @@ import { RecipeButtonsComponent } from '../recipe/recipe-buttons/recipe-buttons.
 import { MenuService } from '../menu.service';
 import { Location } from '@angular/common';
 import { Router,ActivatedRoute} from '@angular/router';
-
+import { environment} from './../../../environments/environment';
 
  //-------SignalR-Starts------
  const data = { ready : false};
- const apiBaseUrl = 'http://localhost:8081/apiInteractiveRetailStore/v1';
  var iMenuCount:number  = 0;
  var iItemCount:number  = 5;
  //-------SignalR-Ends-------
@@ -32,6 +31,7 @@ export class RecipeComponent implements OnInit {
 
   //------SingnalR- variable declaration -Starts-----
     @ViewChild  (RecipeButtonsComponent) recipeButtonsComponent: RecipeButtonsComponent;
+    apiBaseURL=environment.apiBaseUrl;
   //------SingnalR- variable declaration -Ends------
 
   constructor(private recipeService: RecipeService, private route: ActivatedRoute,
@@ -48,7 +48,7 @@ export class RecipeComponent implements OnInit {
     this.menuName=this.menuService.menuItems[this.menuPos].menuName;
     //--------------SignalR Connection -Starts---------------
   const connection = new signalR.HubConnectionBuilder()
-  .withUrl(apiBaseUrl+'/signalr')
+  .withUrl(this.apiBaseURL+'signalr')
   .withAutomaticReconnect()
   .configureLogging(signalR.LogLevel.Information)
   .build();
