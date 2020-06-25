@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl:'http://localhost:8081/apiInteractiveRetailStore/v1/',
+  apiBaseUrl:'https://api-is-retail.azurewebsites.net/apiInteractiveRetailStore/v1/',
   nickname : 'John Doe'
 };
 
