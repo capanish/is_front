@@ -28,7 +28,7 @@
   opacity: 0.5;
   height: 120%;
   position: absolute;
-  width: 98.8%;
+  width: 100%;
 }
 
 .cTitleDiv {
@@ -38,7 +38,7 @@
   font-family: "Roboto";
   z-index: 9997;
   position: absolute;
-  width: 48.85%;
+  width: 49.5%;
   height: 10%;
   background: linear-gradient(to bottom, #e8eee8, transparent);
 }

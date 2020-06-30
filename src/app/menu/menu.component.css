@@ -1,38 +1,43 @@
-.menuTabDiv{
-    padding-top: 41%;
-    background-size: cover;
-    width: 100%;
-    vertical-align: middle;
-    background-image:linear-gradient(to top, #e8eee8 10%,  #e8eee8 10%);
-    }
-.menuFlex{
-    display: flex;
-    padding-left: 5%;
-    background: linear-gradient(to top, #e8eee8, transparent);
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
-.menuBG{
-    position:inherit;
+
+.menuTabDiv {
+  padding-top: 41%;
+  background-size: cover;
+  width: 100%;
+  vertical-align: middle;
+  background-image: linear-gradient(to top, #e8eee8 10%, #e8eee8 10%);
 }
-.menuTab{
-    width: 100%;
-    bottom: 0;
-   }
-.menuHead{
+.menuFlex {
+  display: flex;
+  padding-left: 5%;
+  background: linear-gradient(to top, #e8eee8, transparent);
+}
+.menuBG {
+  position: inherit;
+}
+.menuTab {
+  width: 100%;
+  bottom: 0;
+}
+.menuHead {
   font-weight: bold;
   font-size: medium;
   color: black;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   z-index: 9997;
-  width: 48.84%;
+  width: 49.5%;
   height: 10%;
   position: absolute;
-  top: 1.2%;
+  top: 0%;
   background: linear-gradient(to bottom, #e8eee8, transparent);
 }
-.recipeMainDiv{
+.recipeMainDiv {
   position: absolute;
   height: 73%;
   width: 87%;
 }
-
-

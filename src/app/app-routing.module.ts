@@ -8,10 +8,8 @@ import { MyListComponent } from './menu/my-list/my-list.component';
 import { CarouselComponent } from './carousel/carousel.component';
 
 const routes: Routes = [
- // { path: 'home/id/:menuId', component: MenuComponent},
   { path: 'carousel', component: CarouselComponent},
    { path: 'home', component: MenuComponent,
-
    children: [
     {path: 'myList', component: MyListComponent},
     {path: 'recipe', component: RecipeComponent},
@@ -23,13 +21,6 @@ const routes: Routes = [
   ]
   }
 ];
-  /*
- {path: 'menu', component: MenuComponent},
- {path: 'categories', component: CategoryComponent},
- { path: 'information', component: NutriInfoComponent }
-]*/
-
-
 
 
 @NgModule({
